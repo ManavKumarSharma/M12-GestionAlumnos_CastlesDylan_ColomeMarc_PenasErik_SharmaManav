@@ -18,6 +18,7 @@ if (isset($_GET['errors'])) {
         <br>
         <input type="email" name="email" id="email">
         <br>
+        <!-- hola -->
         <span class="error" id="errorEmail" hidden>Por favor, ingresa un email válido</span>
         <?php
         if (isset($errors['email'])) { 

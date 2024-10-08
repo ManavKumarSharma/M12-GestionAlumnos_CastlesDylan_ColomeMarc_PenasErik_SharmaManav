@@ -18,7 +18,7 @@ if (isset($_GET['errors'])) {
         <input type="email" name="email">
         <br>
         <?php
-        if (isset($errors['email'])) {echo $errors['email'] . '</br>'; } // EN CASO DE ERROR, LO MUESTRA
+        if (isset($errors['email'])) {echo htmlspecialchars($errors['email']) . '</br>'; } // EN CASO DE ERROR, LO MUESTRA
         ?>
         <br>
         <label for="password">Contraseña:</label>
@@ -26,7 +26,7 @@ if (isset($_GET['errors'])) {
         <input type="password" name="password">
         <br>
         <?php
-        if (isset($errors['password'])) {echo $errors['password'] . '</br>'; } // EN CASO DE ERROR, LO MUESTRA
+        if (isset($errors['password'])) {echo htmlspecialchars($errors['password']) . '</br>'; } // EN CASO DE ERROR, LO MUESTRA
         ?>
         <br>
         <button type="submit" name="login">Iniciar Sesión</button>

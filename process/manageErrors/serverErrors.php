@@ -4,7 +4,7 @@ function checkServerForms($method, $submit) {
     if ($method || $submit) {
         echo "<script>
                 alert('No se pudo procesar la solicitud');
-                window.location.href = '../../page/index.php';
+                window.location.href = '../../index.php';
               </script>";
         exit();
     }

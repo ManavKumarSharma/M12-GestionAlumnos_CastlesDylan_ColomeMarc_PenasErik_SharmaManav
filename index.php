@@ -10,10 +10,10 @@ if (isset($_GET['errors'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="../validations/validations_js/validateLogIn.js"></script>
+    <script src="./validations/validations_js/validateLogIn.js"></script>
 </head>
 <body>
-    <form action="../validations/validations_php/validateLogIn.php" method="post" onsubmit="validateLogInForm(event)">
+    <form action="./validations/validations_php/validateLogIn.php" method="post" onsubmit="validateLogInForm(event)">
         <label for="email">Correo:</label>
         <br>
         <input type="email" name="email" id="email">

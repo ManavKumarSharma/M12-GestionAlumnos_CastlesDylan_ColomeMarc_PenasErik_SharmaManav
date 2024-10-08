@@ -25,7 +25,7 @@ if ($email == false) {
 
 // EN CASO DE ERROR REDIRIGIR A LA PÁGINE page/index.php Y MOSTRAR LOS ERRORES
 if($errors) {
-    redirectWithErrors('../../page/index.php', $errors);
+    redirectWithErrors('../../index.php', $errors);
 }
 
 // ENCAPSULAMOS LOS DATOS EN UNA VARIABLE TIPO ARRAY

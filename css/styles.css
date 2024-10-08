@@ -1,0 +1,11 @@
+.divContenedor {
+    display: flex;
+}
+
+.divPequeño {
+    width: 35%;
+}
+
+.divGrande {
+    width: 65%;
+}

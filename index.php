@@ -33,7 +33,7 @@ if (isset($_GET['errors'])) {
             <nav class="nav" id="nav">
                 <div class="divHeader">
                     <ul class="nav-list">
-                    <li class="opciones" class="esconder" id="esconder"><button onclick="cerrarMenu()">X</button></li>
+                    <li class="opciones" class="esconder" id="esconder"><button onclick="cerrarMenu()"><i class="fa-solid fa-xmark" style="color: #003899;"></i></button></li>
                         <li class="opciones"><a href="#" class="quitarEstilo">Inicio</a></li>
                         <li class="opciones"><a href="#" class="quitarEstilo">Quiénes somos</a></li>
                         <li class="opciones"><a href="#" class="quitarEstilo">Servicios</a></li>

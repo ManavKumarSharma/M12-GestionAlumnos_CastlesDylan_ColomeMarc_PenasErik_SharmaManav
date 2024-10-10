@@ -180,6 +180,12 @@
         #esconder {
             visibility: hidden;
         }
+
+        #esconder>button {
+            background: none;
+            background-color: white;
+            border: 1px white;
+        }
         
         ul {
             font-size: 1vw;

@@ -1,4 +1,5 @@
 <?php
+
 // EN CASO QUE HAYA ERRORES EN LA URL POR GET, INICIALIZA LA VARIABLE
 if (isset($_GET['errors'])) {
     $errors = $_GET['errors'];

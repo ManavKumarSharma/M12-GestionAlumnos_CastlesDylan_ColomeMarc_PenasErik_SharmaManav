@@ -12,7 +12,10 @@ if (isset($_GET['errors'])) {
     <title>Document</title>
     <script src="./validations/validations_js/validateLogIn.js"></script>
     <script src="./process/scripts_js/cargarPagina.js"></script>
+    <script src="./process/scripts_js/showBars.js"></script>
     <link rel="stylesheet" href="./css/styles.css">
+    <script src="https://kit.fontawesome.com/fbf78ca96b.js" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
@@ -24,15 +27,18 @@ if (isset($_GET['errors'])) {
             <div class="divLogo">
                 <img src="./imagenes/logo2.png" alt="Logo jesuites" class="logo2">
             </div>
+            <div class="btn-cerrar">
+                <button class="cerrar-menu" id="cerrar" onclick="abrirMenu()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" oncl><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#0054e6" d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"/></svg></button>
+            </div>
             <nav class="nav" id="nav">
                 <div class="divHeader">
-                    <button class="cerrar-menu" id="cerrar"><i class="bi bi-x"></i></button>
                     <ul class="nav-list">
-                        <li><a href="#">Inicio</a></li>
-                        <li><a href="#">Quiénes somos</a></li>
-                        <li><a href="#">Servicios</a></li>
-                        <li><a href="#">Qué hacemos</a></li>
-                        <li><a href="#">Contacto</a></li>
+                    <li class="opciones" class="esconder" id="esconder"><button onclick="cerrarMenu()"><i class="fa-solid fa-xmark" style="color: #003899;"></i></button></li>
+                        <li class="opciones"><a href="#" class="quitarEstilo">Inicio</a></li>
+                        <li class="opciones"><a href="#" class="quitarEstilo">Quiénes somos</a></li>
+                        <li class="opciones"><a href="#" class="quitarEstilo">Servicios</a></li>
+                        <li class="opciones"><a href="#" class="quitarEstilo">Qué hacemos</a></li>
+                        <li class="opciones"><a href="#" class="quitarEstilo">Contacto</a></li>
                     </ul>
                 </div>
             </nav>

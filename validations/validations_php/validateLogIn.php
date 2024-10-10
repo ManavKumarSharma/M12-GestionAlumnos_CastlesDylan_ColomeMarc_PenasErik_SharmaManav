@@ -43,5 +43,4 @@ $_SESSION["data"] = [
 ];
 
 header ("Location: ../../process/loginProcess.php");
-echo 'has entrado (no está acabado aún mamaguevos)';
 ?>

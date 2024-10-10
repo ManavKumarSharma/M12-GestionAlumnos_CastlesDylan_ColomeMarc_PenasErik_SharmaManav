@@ -3,6 +3,7 @@
 if (isset($_GET['errors'])) {
     $errors = $_GET['errors'];
 }
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,20 +54,34 @@ if (isset($_GET['errors'])) {
             <form action="./validations/validations_php/validateLogIn.php" method="post" onsubmit="validateLogInForm(event)">
 
             <label for="email">Correo:</label>
-                <input type="email" name="email" id="email">
+                <input type="email" name="email" id="email" value="<?php echo isset($_SESSION['data']['email']) ? $_SESSION['data']['email'] : "" ; ?>">
                 <span class="error" id="errorEmail" hidden>Por favor, ingresa un email válido</span>
+                <!-- ERROR FORMATO -->
                 <?php
                 if (isset($errors['email'])) { 
                     echo '<span class="error">' . htmlspecialchars($errors['email']) . '</span><br>'; // EN CASO DE ERROR, LO MUESTRA
+                } 
+                ?>
+                <!-- ERROR BBDD -->
+                <?php
+                if (isset($errors['emailBBDD'])) { 
+                    echo '<span class="error">' . htmlspecialchars($errors['emailBBDD']) . '</span><br>'; // EN CASO DE ERROR, LO MUESTRA
                 } 
                 ?>
                 <br>
                 <label for="password" id="cambiar">Contraseña:</label>
                 <input type="password" name="password" id="password">
                 <span class="error" id="errorPassword" hidden>Por favor, ingresa una contraseña</span>
+                <!-- ERROR FORMATO -->
                 <?php
                 if (isset($errors['password'])){
                     echo '<span class="error">' . htmlspecialchars($errors['password']) . '</span><br>'; } // EN CASO DE ERROR, LO MUESTRA
+                ?>
+                <!-- ERROR BBDD -->
+                <?php
+                if (isset($errors['passwordBBDD'])) {
+                    echo '<span class="error">' . htmlspecialchars($errors['passwordBBDD']) . '</span><br>'; // EN CASO DE ERROR, LO MUESTRA
+                } 
                 ?>
                 <br>
                 <a href="" id="olvidado">Has olvidado la contraseña?</a>

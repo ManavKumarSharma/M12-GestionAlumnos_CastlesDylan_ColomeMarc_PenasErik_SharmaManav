@@ -16,25 +16,28 @@ if (isset($_GET['errors'])) {
 </head>
 
 <body>
+    <div id="loader">
+        <h1>Cargando página...</h1>
+    </div>
     <header>
         <div class="divDelHeader">
             <div class="divLogo">
                 <img src="./imagenes/logo2.png" alt="Logo jesuites" class="logo2">
             </div>
-            <div class="divHeader">
-                <li>
-                    <ul href="" class="opciones">Escuelas y ofertas educativas</ul>
-                    <ul href="" class="opciones">Trabaja con nosotros</ul>
-                    <ul href="" class="opciones">Proyecto educativo</ul>
-                    <ul href="" class="opciones">La fundación</ul>
-                </li>
-
-            </div>
+            <nav class="nav" id="nav">
+                <div class="divHeader">
+                    <button class="cerrar-menu" id="cerrar"><i class="bi bi-x"></i></button>
+                    <ul class="nav-list">
+                        <li><a href="#">Inicio</a></li>
+                        <li><a href="#">Quiénes somos</a></li>
+                        <li><a href="#">Servicios</a></li>
+                        <li><a href="#">Qué hacemos</a></li>
+                        <li><a href="#">Contacto</a></li>
+                    </ul>
+                </div>
+            </nav>
         </div>
     </header>
-    <div id="loader">
-        <h1>Cargando...</h1>
-    </div>
         <div class="divContenedor" id="contenido">
 
             <div class="divPequeño">
@@ -59,6 +62,7 @@ if (isset($_GET['errors'])) {
                 if (isset($errors['password'])){
                     echo '<span class="error">' . htmlspecialchars($errors['password']) . '</span><br>'; } // EN CASO DE ERROR, LO MUESTRA
                 ?>
+                <br>
                 <a href="" id="olvidado">Has olvidado la contraseña?</a>
                 <br>
                 <button type="submit" name="login" id="enviar">Iniciar Sesión</button>

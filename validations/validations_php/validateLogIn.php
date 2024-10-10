@@ -25,7 +25,7 @@ if ($email == false) {
 }
 
 
-// EN CASO DE ERROR REDIRIGIR A LA PÁGINE page/index.php Y MOSTRAR LOS ERRORES
+// EN CASO DE ERROR REDIRIGIR A LA PÁGINA page/index.php Y MOSTRAR LOS ERRORES
 if($errors) {
     redirectWithErrors('../../index.php', $errors);
 }

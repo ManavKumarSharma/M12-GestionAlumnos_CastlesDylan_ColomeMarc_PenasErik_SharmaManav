@@ -143,7 +143,7 @@
         }
         
         .btn-cerrar {
-            width: 100%;
+            width: 10%;
             text-align: right;
         }
         
@@ -217,6 +217,9 @@
                 height: 70%;
                 margin-top: 20%
             }
+            .btn-cerrar {
+                width: 100%;
+            }
             .nav {
                 /* display: none; */
                 position: absolute;
@@ -227,9 +230,15 @@
                 bottom: 0;
                 width: 30vw;
                 opacity: 95%;
+                visibility: hidden;
             }
+            
+            .divHeader {
+                visibility: hidden;
+            }
+            
             #esconder {
-                visibility: visible;
+                visibility: hidden;
             }
             .quitarEstilo {
                 font-size: 3vw

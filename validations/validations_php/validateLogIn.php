@@ -1,4 +1,5 @@
 <?php
+
 // IMPORTAR AUTOMÁTICAMENTE LOS ARCHIVOS NECESARIOS
 foreach (glob("./sanitize_data/*.php") as $archivo) {
     require_once $archivo;
@@ -23,16 +24,24 @@ if ($email == false) {
     $errors['email'] = 'El formato del campo "email" no es válido';
 }
 
+
 // EN CASO DE ERROR REDIRIGIR A LA PÁGINE page/index.php Y MOSTRAR LOS ERRORES
 if($errors) {
     redirectWithErrors('../../index.php', $errors);
 }
 
-// ENCAPSULAMOS LOS DATOS EN UNA VARIABLE TIPO ARRAY
-$data = [
+// ENCRIPTAMOS LA CONTRASEÑA RECIBIDA 
+$password = hash('sha256', $password);
+
+// INICIAMOS SESSION DESPUÉS DE VERIFICAR LOS CAMPOS
+session_start();
+
+// INICIALIZAMOS LA SESSION
+$_SESSION["data"] = [
     'email' => $email,
     'password' => $password
 ];
 
+header ("Location: ../../process/loginProcess.php");
 echo 'has entrado (no está acabado aún mamaguevos)';
 ?>

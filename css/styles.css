@@ -1,252 +1,324 @@
-@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
-* {
-    font-family: "Mukta", sans-serif;
-    font-weight: 300;
-    font-style: normal;
-}
+        @import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
+        * {
+            font-family: "Mukta", sans-serif;
+            font-weight: 300;
+            font-style: normal;
+        }
+        
+        #contenido {
+            display: none;
+        }
+        
+        #loader {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #f3f3f3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+            background-color: #0063AF;
+        }
+        
+        .divContenedor {
+            border: 1px solid black;
+            border-radius: 2px;
+            margin-left: 15%;
+            margin-right: 15%;
+            margin-top: 5%;
+            margin-bottom: 5%;
+            height: 72%;
+            min-height: 380px;
+            background-color: white;
+            box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+            display: flex;
+        }
+        
+        .divPequeño {
+            width: 40%;
+            height: 100%;
+            display: flex;
+            float: left;
+        }
+        
+        .divGrande {
+            display: flex;
+            width: 60%;
+            height: 100%;
+            float: right;
+            justify-content: center;
+        }
+        
+        .divLogo {
+            width: 20%;
+            display: flex;
+            text-align: center;
+        }
+        
+        .divHeader {
+            width: 100%;
+            height: 100%
+        }
+        
+        nav {
+            width: 100%
+        }
+        
+        .divDelHeader {
+            background-color: white;
+            width: 100%;
+            display: flex;
+        }
+        
+        .logo {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: auto;
+            margin-bottom: auto;
+            width: auto;
+            height: 10vw;
+        }
+        
+        .logo2 {
+            height: 80%;
+            display: block;
+            margin: auto;
+        }
+        
+        form {
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+        
+        header {
+            background-color: white;
+            margin: 0;
+            height: 10%;
+            min-height: 80px;
+            display: flex;
+        }
+        
+        label,
+        input {
+            display: block;
+            justify-content: center;
+            font-size: 1.8vw;
+        }
+        
+        #enviar {
+            font-size: 1.4vw;
+            width: 100%;
+            background: none;
+            background-color: #0091ff;
+            border-radius: 8px;
+            border: 1px solid lightslategray;
+            margin-top: 20px;
+            color: white;
+            transition-duration: 0.5s;
+        }
+        
+        #enviar:hover {
+            background-color: rgb(255, 255, 255);
+            color: #0063AF;
+        }
+        
+        input {
+            border-radius: 2px;
+            border: 1px solid lightslategray;
+            box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+            margin-bottom: 8px;
+            height: 1.8vw;
+            font-size: 1.4vw;
+        }
+        
+        .btn-cerrar {
+            width: 10%;
+            text-align: right;
+        }
+        
+        #olvidado {
+            font-size: 1vw;
+        }
+        
+        .a-link {
+            text-decoration: none;
+        }
+        
+        .error {
+            color: red;
+            font-size: 1vw;
+        }
+        
+        #cambiar {
+            margin-top: 15px
+        }
+        
+        .opciones {
+            margin-right: 5vw;
+            margin-top: 34px;
+        }
+        
+        .quitarEstilo {
+            text-decoration: none;
+        }
+        
+        li {
+            list-style: none;
+        }
+        
+        #esconder {
+            visibility: hidden;
+        }
 
-#contenido {
-    display: none;
-}
-
-#loader {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #f3f3f3;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-body,
-html {
-    height: 100%;
-    margin: 0;
-    background-color: #0063AF;
-}
-
-.divContenedor {
-    border: 1px solid black;
-    border-radius: 2px;
-    margin-left: 15%;
-    margin-right: 15%;
-    margin-top: 5%;
-    margin-bottom: 5%;
-    height: 72%;
-    min-height: 380px;
-    background-color: white;
-    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
-    display: flex;
-}
-
-.divPequeño {
-    width: 40%;
-    height: 100%;
-    display: flex;
-    float: left;
-}
-
-.divGrande {
-    display: flex;
-    width: 60%;
-    height: 100%;
-    float: right;
-    justify-content: center;
-}
-
-.divLogo {
-    width: 20%;
-    display: flex;
-    text-align: center;
-}
-
-.divHeader {
-    width: 100%;
-}
-
-nav {
-    width: 100%
-}
-
-.divDelHeader {
-    background-color: white;
-    width: 100%;
-    display: flex;
-}
-
-.logo {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: auto;
-    margin-bottom: auto;
-    width: auto;
-    height: 10vw;
-}
-
-.logo2 {
-    height: 80%;
-    display: block;
-    margin: auto;
-}
-
-form {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: auto;
-    margin-bottom: auto;
-}
-
-header {
-    background-color: white;
-    margin: 0;
-    height: 10%;
-    min-height: 80px;
-    display: flex;
-}
-
-label,
-input {
-    display: block;
-    justify-content: center;
-    font-size: 1.8vw;
-}
-
-#enviar {
-    font-size: 1.4vw;
-    width: 100%;
-    background: none;
-    background-color: #0091ff;
-    border-radius: 8px;
-    border: 1px solid lightslategray;
-    margin-top: 20px;
-    color: white;
-    transition-duration: 0.5s;
-}
-
-#enviar:hover {
-    background-color: rgb(255, 255, 255);
-    color: #0063AF;
-}
-
-input {
-    border-radius: 2px;
-    border: 1px solid lightslategray;
-    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-    margin-bottom: 8px;
-    height: 1.8vw;
-    font-size: 1.4vw;
-}
-
-#olvidado {
-    font-size: 1vw;
-}
-
-.a-link {
-    text-decoration: none;
-}
-
-.error {
-    color: red;
-    font-size: 1vw;
-}
-
-#cambiar {
-    margin-top: 15px
-}
-
-.opciones {
-    margin-right: 2vw;
-    margin-top: 35px;
-}
-
-li {
-    list-style: none;
-}
-
-ul {
-    font-size: 1vw;
-    float: right;
-}
-
-@media (max-width: 1200px) {
-    input,
-    label {
-        font-size: 2.4vw;
-    }
-    .error,
-    #olvidado {
-        font-size: 1.6vw
-    }
-    #enviar {
-        font-size: 2.4vw;
-    }
-    ul {
-        font-size: 1.5vw;
-    }
-}
-
-@media (max-width: 800px) {
-    .divContenedor {
-        display: block;
-        height: 70%;
-        margin-top: 20%
-    }
-    li,
-    ul {
-        visibility: hidden;
-    }
-    .divPequeño,
-    .divGrande {
-        width: 100%;
-    }
-    .divPequeño {
-        height: 30%
-    }
-    .divGrande {
-        height: 70%
-    }
-    .logo {
-        width: 80%;
-        height: auto;
-    }
-    label {
-        width: 100%;
-        font-size: 4vw;
-    }
-    input {
-        height: 4vw;
-        font-size: 3.5vw
-    }
-    .error,
-    #olvidado {
-        font-size: 2.5vw
-    }
-    #enviar {
-        font-size: 3.5vw;
-    }
-}
-
-@media (max-width: 600px) {
-    .divContenedor {
-        height: 52%;
-        margin-top: 30%
-    }
-    input {
-        height: 5vw;
-        font-size: 4vw
-    }
-    label {
-        font-size: 5vw;
-    }
-    .error,
-    #olvidado {
-        font-size: 3vw
-    }
-    #enviar {
-        font-size: 4vw;
-    }
-}
+        #esconder>button {
+            background: none;
+            background-color: white;
+            border: 1px white;
+        }
+        
+        ul {
+            font-size: 1vw;
+            float: right;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100%
+        }
+        
+        .cerrar-menu {
+            visibility: hidden;
+        }
+        
+        @media (max-width: 1200px) {
+            input,
+            label {
+                font-size: 2.4vw;
+            }
+            .error,
+            #olvidado {
+                font-size: 1.6vw
+            }
+            #enviar {
+                font-size: 2.4vw;
+            }
+            ul {
+                font-size: 1.5vw;
+            }
+        }
+        
+        @media (max-width: 800px) {
+            .divContenedor {
+                display: block;
+                height: 70%;
+                margin-top: 20%
+            }
+            .btn-cerrar {
+                width: 100%;
+            }
+            .nav {
+                /* display: none; */
+                position: absolute;
+                background-color: white;
+                padding: 0;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                width: 30vw;
+                opacity: 95%;
+                visibility: hidden;
+            }
+            
+            .divHeader {
+                visibility: hidden;
+            }
+            
+            #esconder {
+                visibility: hidden;
+            }
+            .quitarEstilo {
+                font-size: 3vw
+            }
+            .nav-list {
+                flex-direction: column;
+                align-items: end;
+            }
+            .divPequeño,
+            .divGrande {
+                width: 100%;
+            }
+            .divPequeño {
+                height: 30%
+            }
+            .divGrande {
+                height: 70%
+            }
+            .logo {
+                width: 80%;
+                height: auto;
+            }
+            label {
+                width: 100%;
+                font-size: 4vw;
+            }
+            input {
+                height: 4vw;
+                font-size: 3.5vw
+            }
+            .error,
+            #olvidado {
+                font-size: 2.5vw
+            }
+            #enviar {
+                font-size: 3.5vw;
+            }
+            .opciones {
+                margin-top: 15px;
+            }
+            .cerrar-menu {
+                border: none;
+                background: none;
+                padding: 0;
+                margin: 0;
+                outline: none;
+                box-shadow: none;
+                visibility: visible;
+                height: 100%;
+            }
+            svg {
+                height: 50%;
+                width: auto;
+                margin-right: 5vw
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .divContenedor {
+                height: 52%;
+                margin-top: 30%
+            }
+            input {
+                height: 5vw;
+                font-size: 4vw
+            }
+            label {
+                font-size: 5vw;
+            }
+            .error,
+            #olvidado {
+                font-size: 3vw
+            }
+            #enviar {
+                font-size: 4vw;
+            }
+        }

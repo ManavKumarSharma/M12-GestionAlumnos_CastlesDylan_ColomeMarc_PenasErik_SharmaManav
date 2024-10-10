@@ -28,11 +28,11 @@ if (isset($_GET['errors'])) {
                 <div class="divHeader">
                     <button class="cerrar-menu" id="cerrar"><i class="bi bi-x"></i></button>
                     <ul class="nav-list">
-                        <li><a href="#">Inicio</a></li>
-                        <li><a href="#">Quiénes somos</a></li>
-                        <li><a href="#">Servicios</a></li>
-                        <li><a href="#">Qué hacemos</a></li>
-                        <li><a href="#">Contacto</a></li>
+                        <li class="opciones"><a href="#">Inicio</a></li>
+                        <li class="opciones"><a href="#">Quiénes somos</a></li>
+                        <li class="opciones"><a href="#">Servicios</a></li>
+                        <li class="opciones"><a href="#">Qué hacemos</a></li>
+                        <li class="opciones"><a href="#">Contacto</a></li>
                     </ul>
                 </div>
             </nav>

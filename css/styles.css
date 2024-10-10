@@ -170,7 +170,6 @@ li {
 ul {
     font-size: 1vw;
     float: right;
-
 }
 
 @media (max-width: 1200px) {
@@ -189,7 +188,6 @@ ul {
         font-size: 1.5vw;
     }
 }
-
 
 @media (max-width: 800px) {
     .divContenedor {
@@ -230,7 +228,6 @@ ul {
     #enviar {
         font-size: 3.5vw;
     }
-    
 }
 
 @media (max-width: 600px) {

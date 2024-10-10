@@ -22,7 +22,7 @@ if (isset($_GET['errors'])) {
         <?php
         if (isset($errors['email'])) { 
             echo '<span class="error">' . htmlspecialchars($errors['email']) . '</span><br>'; // EN CASO DE ERROR, LO MUESTRA
-        } 
+        }
         ?>
         <br>
         <label for="password">Contraseña:</label>

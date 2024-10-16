@@ -3,4 +3,3 @@ RECORDATORIO!!!!!!!!!!!!!!!!!!!!!! --> CAMBIAR LOS PARÁMETROS DE LA CONEXIÓN M
 salu2
 
 Dylan Castles Cazalla, Marc Colomé Cuenca, Erik Peñas Andrea, Manav Kumar Sharma
-test

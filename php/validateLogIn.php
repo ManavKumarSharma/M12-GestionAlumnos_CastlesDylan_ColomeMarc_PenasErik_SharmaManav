@@ -1,13 +1,6 @@
 <?php
-
-// IMPORTAR AUTOMÁTICAMENTE LOS ARCHIVOS NECESARIOS
-foreach (glob("./sanitize_data/*.php") as $archivo) {
-    require_once $archivo;
-}
-
-foreach (glob("../../process/manageErrors/*.php") as $archivo) {
-    require_once $archivo;
-}
+// IMPORTAR LAS FUNCIONES NECESARIAS
+require_once './functions.php';
 
 // LLAMA A LA FUNCIÓN QUE PASA DE ARGUMENTOS EL MÉTODO Y EL SUBMIT CORRESPONDIENTE
 checkServerForms($_SERVER['REQUEST_METHOD'] !== 'POST', !filter_has_var(INPUT_POST, 'login'));
@@ -27,11 +20,8 @@ if ($email == false) {
 
 // EN CASO DE ERROR REDIRIGIR A LA PÁGINA page/index.php Y MOSTRAR LOS ERRORES
 if($errors) {
-    redirectWithErrors('../../index.php', $errors);
+    redirectWithErrors('../view/index.php', $errors);
 }
-
-// ENCRIPTAMOS LA CONTRASEÑA RECIBIDA 
-$password = hash('sha256', $password);
 
 // INICIAMOS SESSION DESPUÉS DE VERIFICAR LOS CAMPOS
 session_start();
@@ -42,5 +32,5 @@ $_SESSION["data"] = [
     'password' => $password
 ];
 
-header ("Location: ../../process/loginProcess.php");
+header ("Location: ./loginProcess.php");
 ?>

@@ -13,7 +13,7 @@ CREATE TABLE tbl_user (
     telf_user char(9) NOT NULL,
     email_cole_user varchar(40) NOT NULL,
     email_pri_user varchar(40) NOT NULL,
-    pwd_user char(12) NOT NULL,
+    pwd_user char(60) NOT NULL,
     sexo_user set('H','M')
 );
 

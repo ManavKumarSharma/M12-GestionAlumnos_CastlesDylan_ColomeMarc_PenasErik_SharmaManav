@@ -3,10 +3,10 @@
 session_start();
 
 if (!isset($_SESSION["data"])) {
-    header ("Location: ../index.php");
+    header ("Location: ./index.php");
 }
 
-include ("../process/connection/connection.php");
+include ("../php/connection/connection.php");
 
 $valoresBBDD = [];
 

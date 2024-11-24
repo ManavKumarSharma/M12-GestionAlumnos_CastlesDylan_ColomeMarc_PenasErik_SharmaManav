@@ -28,7 +28,7 @@
             matricula_alumno int NOT NULL PRIMARY KEY AUTO_INCREMENT,
             nombre_alumno varchar(25) NOT NULL,
             apellido_alumno varchar(40) NOT NULL,
-            dni_alumno char(8) NOT NULL,
+            dni_alumno char(9) NOT NULL,
             fecha_nac_alumno date NOT NULL,
             direccion_alumno varchar(40),
             telf_alumno char(9) NOT NULL,
@@ -76,14 +76,14 @@
     (4, 'Conserje');
 
     INSERT INTO tbl_user (id_rol, email_cole_user, pwd_user) VALUES
-    (1, 'admin@colegio.com', '$2b$12$N5o77LlTP6gZVv3s0T.R/OcU5ABkjhD9WzRtufto0FZmkDIFDhOm2'), -- Contraseña: Admin123!
-    (2, 'secretaria@colegio.com', '$2b$12$G7cTlmbL2ZmVLoVcOI8Y9OcIz9bqRzGZyTW5NB9CBGpIgV5TcoF/.'), -- Contraseña: Secretaria2024
-    (3, 'profesor@colegio.com', '$2b$12$yWrOdmycE/.1iHqZMWdCVON1ROgMHN/aAQLnY7AB8rQtOjWQ01hOy'), -- Contraseña: Educador2024
-    (4, 'conserje@colegio.com', '$2b$12$3.0W84qPi59KzCAm6JW8ceCpWv.bof20VRsh2MzGHJ43LMuL8iL22'); -- Contraseña: Conserje1234
+    (1, 'admin@colegio.com', '$2y$10$ghDs4NA9mdKu7Sw3DPLQ9uDB5tnMrqBbEClRefXZ4jHSH9.R6OCFK'), -- Contraseña: Barcelona1234!
+    (2, 'secretaria@colegio.com', '$2y$10$ghDs4NA9mdKu7Sw3DPLQ9uDB5tnMrqBbEClRefXZ4jHSH9.R6OCFK'), -- Contraseña: Barcelona1234!
+    (3, 'profesor@colegio.com', '$2y$10$ghDs4NA9mdKu7Sw3DPLQ9uDB5tnMrqBbEClRefXZ4jHSH9.R6OCFK'), -- Contraseña: Barcelona1234!
+    (4, 'conserje@colegio.com', '$2y$10$ghDs4NA9mdKu7Sw3DPLQ9uDB5tnMrqBbEClRefXZ4jHSH9.R6OCFK'); -- Contraseña: Barcelona1234!
 
     INSERT INTO tbl_alumnos (nombre_alumno, apellido_alumno, dni_alumno, fecha_nac_alumno, direccion_alumno, telf_alumno, email_cole_alumno, email_pri_alumno, sexo_user) VALUES
-    ('Juan', 'Pérez López', '12345678A', '2005-04-15', 'Calle Mayor 123', '612345678', 'juan.perez@colegio.com', 'juan.perez@gmail.com', 'H'),
-    ('María', 'García Gómez', '23456789B', '2006-08-23', 'Avenida de la Paz 45', '622345678', 'maria.garcia@colegio.com', 'maria.garcia@yahoo.com', 'M');
+    ('Juan', 'Pérez López', '23456788A', '2005-04-15', 'Calle Mayor 123', '612345678', 'juan.perez@colegio.com', 'juan.perez@gmail.com', 'H'),
+    ('María', 'García Gómez', '72456789B', '2006-08-23', 'Avenida de la Paz 45', '622345678', 'maria.garcia@colegio.com', 'maria.garcia@yahoo.com', 'M');
 
     INSERT INTO tbl_asignaturas (nombre_asignatura) VALUES
     ('Matemáticas'),

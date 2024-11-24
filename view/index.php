@@ -54,7 +54,7 @@ session_start();
             <form action="../php/validateLogIn.php" method="post" onsubmit="validateLogInForm(event)">
 
             <label for="email">Correo:</label>
-                <input type="email" name="email" id="email" value="<?php echo isset($_SESSION['data']['email']) ? $_SESSION['data']['email'] : "" ; ?>">
+                <input type="email" name="email" id="email" value="<?php echo isset($_SESSION['data']['email']) ? htmlspecialchars($_SESSION['data']['email']) : "" ; ?>">
                 <span class="error" id="errorEmail" hidden>Por favor, ingresa un email válido</span>
                 <!-- ERROR FORMATO -->
                 <?php

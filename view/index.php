@@ -5,18 +5,18 @@ if (isset($_GET['errors'])) {
 }
 session_start();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="./validations/validations_js/validateLogIn.js"></script>
-    <script src="./process/scripts_js/cargarPagina.js"></script>
-    <script src="./process/scripts_js/showBars.js"></script>
-    <link rel="stylesheet" href="./css/styles.css">
+    <script src="../js/validateLogIn.js"></script>
+    <script src="../js/cargarPagina.js"></script>
+    <script src="../js/showBars.js"></script>
+    <link rel="stylesheet" href="../css/styles.css">
     <script src="https://kit.fontawesome.com/fbf78ca96b.js" crossorigin="anonymous"></script>
-
 </head>
 
 <body>
@@ -26,7 +26,7 @@ session_start();
     <header>
         <div class="divDelHeader">
             <div class="divLogo">
-                <img src="./imagenes/logo2.png" alt="Logo jesuites" class="logo2">
+                <img src="../img/logo2.png" alt="Logo jesuites" class="logo2">
             </div>
             <div class="btn-cerrar">
                 <button class="cerrar-menu" id="cerrar" onclick="abrirMenu()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" oncl><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#0054e6" d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"/></svg></button>
@@ -48,13 +48,13 @@ session_start();
         <div class="divContenedor" id="contenido">
 
             <div class="divPequeño">
-                <img src="./imagenes/logo.webp" alt="Logo colegio" class="logo">
+                <img src="../img/logo.webp" alt="Logo colegio" class="logo">
             </div>
             <div class="divGrande">
-            <form action="./validations/validations_php/validateLogIn.php" method="post" onsubmit="validateLogInForm(event)">
+            <form action="../php/validateLogIn.php" method="post" onsubmit="validateLogInForm(event)">
 
             <label for="email">Correo:</label>
-                <input type="email" name="email" id="email" value="<?php echo isset($_SESSION['data']['email']) ? $_SESSION['data']['email'] : "" ; ?>">
+                <input type="email" name="email" id="email" value="<?php echo isset($_SESSION['data']['email']) ? htmlspecialchars($_SESSION['data']['email']) : "" ; ?>">
                 <span class="error" id="errorEmail" hidden>Por favor, ingresa un email válido</span>
                 <!-- ERROR FORMATO -->
                 <?php

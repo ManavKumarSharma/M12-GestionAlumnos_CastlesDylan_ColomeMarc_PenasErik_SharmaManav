@@ -40,6 +40,17 @@ if (!password_verify($valoresBBDD['password'], $hashedPasswordFromDB)) {
     redirectWithErrors('../view/index.php', $errors);
 }
 
+
+// Liberamos la sesión de datos
+unset($_SESSION['data']);
+
+// Inicializamos la sesión del usuario
+$_SESSION['session_user'] = [
+    'id' => $row['id_user'],
+    'name' => $row['nombre_user'],
+    'surname' => $row['apellidos_user']
+];
+
 // Si todo es correcto, redirigir al usuario a la página de recepción
 header ("Location: ../view/recepcion.php");
 exit();

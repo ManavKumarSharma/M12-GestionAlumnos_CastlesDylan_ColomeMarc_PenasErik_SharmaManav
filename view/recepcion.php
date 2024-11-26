@@ -51,10 +51,8 @@ $total_pages = ceil($total_records / $limit_number);
             <form action="" method="GET">
                 <select name="results" id="results">
                     <option value="5" <?php if ($limit_number == 5) echo 'selected'; ?>>5</option>
-                    <option value="15" <?php if ($limit_number == 15) echo 'selected'; ?>>15</option>
-                    <option value="30" <?php if ($limit_number == 30) echo 'selected'; ?>>30</option>
-                    <option value="50" <?php if ($limit_number == 50) echo 'selected'; ?>>50</option>
-                    <option value="100" <?php if ($limit_number == 100) echo 'selected'; ?>>100</option>
+                    <option value="10" <?php if ($limit_number == 10) echo 'selected'; ?>>10</option>
+                    <option value="20" <?php if ($limit_number == 20) echo 'selected'; ?>>20</option>
                 </select>
                 <input type="hidden" name="resutlsbtn" value="<?php echo $page; ?>">
             </form>
@@ -67,7 +65,7 @@ $total_pages = ceil($total_records / $limit_number);
                         <a href="?page=<?php echo $page - 1; ?>&results=<?php echo $limit_number; ?>">Anterior</a>
                     <?php endif; ?>
 
-                    <span>Página <?php echo $page; ?> de <?php echo $total_pages; ?></span>
+                    <span><?php echo $page; ?> de <?php echo $total_pages; ?></span>
 
                     <?php if ($page < $total_pages): ?>
                         <a href="?page=<?php echo $page + 1; ?>&results=<?php echo $limit_number; ?>">Siguiente</a>

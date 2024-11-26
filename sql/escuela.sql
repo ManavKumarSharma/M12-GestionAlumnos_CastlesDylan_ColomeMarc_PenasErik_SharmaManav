@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS bd_escuela;
 
 -- CREACION BBDD
 

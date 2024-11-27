@@ -1,0 +1,38 @@
+html {
+    width: 100%;
+    height: 100%;
+}
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+#header {
+    background-color: #FFFFFF;
+    width: 100%;
+    height: 14%;
+    border-bottom: 4px solid #009AFF;
+    box-sizing: border-box;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+#content {
+    width: 100%;
+    height: 86%;
+    background-color: #071334;
+}
+#logo-iz {
+    height: 45px;
+    width: auto;
+    margin-left: 30px;
+}
+#logo-cent {
+    height: 45px;
+    width: auto;
+}
+#btns-der {
+    width: 400px;
+    height: 20px;
+    background-color: red;
+}

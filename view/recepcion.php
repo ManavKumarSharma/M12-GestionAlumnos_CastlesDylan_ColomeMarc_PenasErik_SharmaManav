@@ -1,103 +1,82 @@
 <?php
-
 session_start();
 
-if (!isset($_SESSION["data"])) {
-    header ("Location: ./index.php");
+// Verificamos si existe la variable de SESSION
+if (!isset($_SESSION['session_user'])) {  // Corregido 'sesison_user' por 'session_user'
+    header('Location: ./index.php');
+    exit; // Aseguramos que no se ejecute el resto del código después del redireccionamiento
 }
 
-include ("../php/connection/connection.php");
+// Importamos los archivos necesarios
+require_once '../php/functions.php';
+require_once '../php/query.php';
 
-$valoresBBDD = [];
+// Importamos la conexión con la BBDD
+require '../php/connection/connection.php';
 
-foreach ($_SESSION["data"] as $campo => $valor) {
-    $valoresBBDD[$campo] = mysqli_real_escape_string($mysqli, $valor);
-}
-
-$consultaEmail = "SELECT tbl_user.*, tbl_roles.* from tbl_user INNER JOIN tbl_roles ON tbl_user.id_rol = tbl_roles.id_rol WHERE email_cole_user = ?;";
-
-// Comprobar si existe un usuario con el email
-    // Inicializar la declaracion para poder usarla
-    $stmt = mysqli_stmt_init($mysqli);
-
-    // Preparar declaracion con la consulta
-    mysqli_stmt_prepare($stmt, $consultaEmail);
-
-    // Asociar los "?" de la declaracion con su variable
-    mysqli_stmt_bind_param($stmt, "s", $valoresBBDD['email']);
-
-    // Ejecutar declaracion preparada
-    mysqli_stmt_execute($stmt);
-
-    // Obtener el resultado como un objeto mysqli_result
-    $result = mysqli_stmt_get_result($stmt);
-
-    // Verificar si hay resultados
-    if (!($result && mysqli_num_rows($result) > 0)) {
-        $errors['emailBBDD'] = 'No existe ningún usuario con ese email.';
-        redirectWithErrors('../index.php', $errors);
-    }
-
-    $row = mysqli_fetch_assoc($result);
+// Obtenemos los datos de los usuarios desde la base de datos
+$data = getUsersFromBBDD($mysqli);
 ?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse; /* Asegura que los bordes se colapsen en uno solo */
-        }
-        th, td {
-            border: 1px solid black; /* Define el borde de las celdas */
-            padding: 8px; /* Espaciado interno en las celdas */
-            text-align: left; /* Alineación del texto a la izquierda */
-        }
-        th {
-            background-color: #f2f2f2; /* Color de fondo para el encabezado */
-        }
-    </style>
+    <link rel="stylesheet" href="../css/estilos.css">
+    <title>Página principal</title>
 </head>
 <body>
-    <div>
-        <fieldset>
-            <h2>Bienvenid@ <?php echo $row['nom_user']; ?>, estos son sus datos</h2>
+    <header id="header">
+        <img id="logo-iz" src="../img/logo_lanet.svg" alt="Logo Lanet">
+        <img id="logo-cent" src="../img/logo_fje.svg" alt="Logo FJE">
+        <div id="btns-der">
+            <p>Manab Cum Sauarma</p>
+        </div>
+    </header>
+
+    <main id="continer_main">
+        <?php if(mysqli_num_rows($data) == 0): ?>
+            <p>No hay datos</p>
+        <?php else: ?>
             <table>
+                <thead>
+                    <tr>
+                        <th>Matrícula</th>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
+                        <th>NIF/NIE</th>
+                        <th>Nacimiento</th>
+                        <th>Dirección</th>
+                        <th>Teléfono</th>
+                        <th>Email escolar</th>
+                        <th>Email personal</th>
+                        <th>Sexo</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
                 <tbody>
-                    <tr>
-                        <td>Nombre completo</td>
-                        <td><?php echo $row['nom_user'] . " " . $row['apellido_user']; ?></td>
-                    </tr>
-                    <tr>
-                        <td>DNI</td>
-                        <td><?php echo $row['dni_user'] ?></td>
-                    </tr>
-                    <tr>
-                        <td>Fecha de nacimiento</td>
-                        <td><?php echo $row['fecha_nac_user'] ?></td>
-                    </tr>
-                    <tr>
-                        <td>Número de teléfono</td>
-                        <td><?php echo $row['telf_user'] ?></td>
-                    </tr>
-                    <tr>
-                        <td>Correo escuela</td>
-                        <td><?php echo $row['email_cole_user'] ?></td>
-                    </tr>
-                    <tr>
-                        <td>Permisos</td>
-                        <td><?php echo $row['tipo_rol'] ?></td>
-                    </tr>
-                    <tr>
-                        <td>Sexo</td>
-                        <td><?php echo $row['sexo_user'] ?></td>
-                    </tr>
+                    <?php while($row = mysqli_fetch_assoc($data)): ?>
+                        <tr>
+                            <td><?php echo $row['matricula_alumno']; ?></td>
+                            <td><?php echo htmlspecialchars($row['nombre_alumno']); ?></td>
+                            <td><?php echo htmlspecialchars($row['apellido_alumno']); ?></td>
+                            <td><?php echo htmlspecialchars($row['dni_alumno']); ?></td>
+                            <td><?php echo htmlspecialchars($row['fecha_nac_alumno']); ?></td>
+                            <td><?php echo htmlspecialchars($row['direccion_alumno']); ?></td>
+                            <td><?php echo htmlspecialchars($row['telf_alumno']); ?></td>
+                            <td><?php echo htmlspecialchars($row['email_cole_alumno']); ?></td>
+                            <td><?php echo htmlspecialchars($row['email_pri_alumno']); ?></td>
+                            <td><?php echo htmlspecialchars($row['sexo_user']); ?></td>
+                            <td>
+                                <button>Editar</button>
+                                <button>Eliminar</button>
+                            </td>
+                        </tr>
+                    <?php endwhile; ?>
                 </tbody>
             </table>
-        </fieldset>
-    </div>
+        <?php endif; ?>
+    </main>
 </body>
 </html>

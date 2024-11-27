@@ -33,11 +33,14 @@ $total_pages = ceil($total_records / $limit_number);
     <script src="../js/recargarTabla.js"></script>
 </head>
 <body>
+    <!-- Header de las paginas -->
     <header id="header">
-        <img id="logo-iz" src="../img/logo_lanet.svg" alt="Logo Lanet">
-        <img id="logo-cent" src="../img/logo_fje.svg" alt="Logo FJE">
+        <img id="logo-iz" src="./img/logoClase.png" alt="">
+        <img id="logo-cent" src="./img/logo_fje.svg" alt="">
         <div id="btns-der">
-            <p>Manab Cum Sauarma</p>
+            <img src="./img/profilePic.png" alt="" id="img-user">
+            <p id="usrName">Manab Cum Sauarma</p>
+            <a id="btn-cerrarSesion"><img src="./img/off.png" alt="" id="img-cerrarSesion"></a>
         </div>
     </header>
 

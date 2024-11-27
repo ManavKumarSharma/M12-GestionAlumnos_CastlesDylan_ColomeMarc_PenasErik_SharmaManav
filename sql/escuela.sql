@@ -11,8 +11,8 @@ DROP DATABASE IF EXISTS bd_escuela;
         CREATE TABLE tbl_user (
             id_user int NOT NULL PRIMARY KEY AUTO_INCREMENT,
             id_rol int NOT NULL,
-            nombre_user varchar(30) NOT NULL,
-            apellidos_user varchar(40) NOT NULL,
+            -- nombre_user varchar(30) NOT NULL,
+            -- apellidos_user varchar(40) NOT NULL,
             email_cole_user varchar(40) NOT NULL UNIQUE,
             pwd_user char(60) NOT NULL
         );

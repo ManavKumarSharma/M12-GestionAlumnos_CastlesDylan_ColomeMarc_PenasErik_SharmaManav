@@ -35,86 +35,115 @@ $total_pages = ceil($total_records / $limit_number);
 <body>
     <!-- Header de las paginas -->
     <header id="header">
-        <img id="logo-iz" src="./img/logoClase.png" alt="">
-        <img id="logo-cent" src="./img/logo_fje.svg" alt="">
+        <img id="logo-iz" src="../img/logoClase.png" alt="">
+        <img id="logo-cent" src="../img/logo_fje.svg" alt="">
         <div id="btns-der">
-            <img src="./img/profilePic.png" alt="" id="img-user">
-            <p id="usrName">Manab Cum Sauarma</p>
-            <a id="btn-cerrarSesion"><img src="./img/off.png" alt="" id="img-cerrarSesion"></a>
+            <?php
+                $rutaFotoPerfil = '../fotosPerfil/' . $_SESSION['session_user']['id'] . '.png';
+            ?>
+            <div id="img-userContainer">
+                <img src="<?php echo file_exists($rutaFotoPerfil) ? $rutaFotoPerfil : '../img/profilePic.png' ?>" alt="" id="img-user">
+            </div>
+            <p id="usrName"><?php echo $_SESSION['session_user']['name'] . ' ' .  $_SESSION['session_user']['surname'] ?></p>
+            <a id="btn-cerrarSesion"><img src="../img/off.png" alt="" id="img-cerrarSesion"></a>
         </div>
     </header>
 
     <!-- Contenedor principal de la página -->
-    <main id="continer_main">
-        <!-- Si no hay datos  -->
-        <?php if(mysqli_num_rows($data) == 0): ?>
-            <span>No hay datos</span>
-        <?php else: ?>
-            <!-- Formulario de selección de resultados por página -->
-            <form action="" method="GET">
-                <select name="results" id="results">
-                    <option value="5" <?php if ($limit_number == 5) echo 'selected'; ?>>5</option>
-                    <option value="15" <?php if ($limit_number == 15) echo 'selected'; ?>>15</option>
-                    <option value="30" <?php if ($limit_number == 30) echo 'selected'; ?>>30</option>
-                    <option value="50" <?php if ($limit_number == 50) echo 'selected'; ?>>50</option>
-                    <option value="100" <?php if ($limit_number == 100) echo 'selected'; ?>>100</option>
-                </select>
-                <input type="hidden" name="resutlsbtn" value="<?php echo $page; ?>">
-            </form>
-
-            <?php if ($total_pages > 1): ?>
-                <div class="pagination">
-                    <!-- Enlaces de paginación -->
-                    <?php if ($page > 1): ?>
-                        <a href="?page=1&results=<?php echo $limit_number; ?>">Primera</a>
-                        <a href="?page=<?php echo $page - 1; ?>&results=<?php echo $limit_number; ?>">Anterior</a>
-                    <?php endif; ?>
-
-                    <span>Página <?php echo $page; ?> de <?php echo $total_pages; ?></span>
-
-                    <?php if ($page < $total_pages): ?>
-                        <a href="?page=<?php echo $page + 1; ?>&results=<?php echo $limit_number; ?>">Siguiente</a>
-                        <a href="?page=<?php echo $total_pages; ?>&results=<?php echo $limit_number; ?>">Última</a>
-                    <?php endif; ?>
+    <main id="content">
+        <nav id="menu">
+            <h1 id="tituloPequeño" class="fuenteAzulClaro">OPCIONES</h1>
+            <div class="opcionCaja" id="cajaCrearAlumno">
+                <div id="parteIconoCaja">
+                    <img src="../img/simboloCrearUsuario.png" class="simboloCaja">
                 </div>
-            <?php endif; ?>
+                <div id="parteNombreCaja">
+                    <p class="fuenteBlanca" id="textoCajas">Crear usuario</p>
+                </div>
+            </div>
+            <div class="opcionCaja" id="cajaNotasMedias">
+                <div id="parteIconoCaja">
+                    <img src="../img/simboloNotasMedias.png" class="simboloCaja">
+                </div>
+                <div id="parteNombreCaja">
+                    <p class="fuenteBlanca" id="textoCajas">Notas medias</p>
+                </div>
+            </div>
+        </nav>
+        <div id="content-right" class="fuenteBlanca">
+            <div id="header-tbl">
+                
+            </div>
+            
+            <!-- Si no hay datos  -->
+            <?php if(mysqli_num_rows($data) == 0): ?>
+                <span>No hay datos</span>
+            <?php else: ?>
+                <!-- Formulario de selección de resultados por página -->
+                <form action="" method="GET">
+                    <select name="results" id="results">
+                        <option value="1" <?php if ($limit_number == 1) echo 'selected'; ?>>1</option>
+                        <option value="5" <?php if ($limit_number == 5) echo 'selected'; ?>>5</option>
+                        <option value="10" <?php if ($limit_number == 10) echo 'selected'; ?>>10</option>
+                        <option value="15" <?php if ($limit_number == 15) echo 'selected'; ?>>15</option>
+                    </select>
+                    <input type="hidden" name="resutlsbtn" value="<?php echo $page; ?>">
+                </form>
 
-            <!-- Tabla con los resultados -->
-            <table>
-                <thead>
-                    <tr>
-                        <th>Matrícula</th>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>DNI</th>
-                        <th>Fecha de Nacimiento</th>
-                        <th>Dirección</th>
-                        <th>Teléfono</th>
-                        <th>Email del Colegio</th>
-                        <th>Email Personal</th>
-                        <th>Sexo</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    while ($row = mysqli_fetch_assoc($data)) {
-                        echo "<tr>";
-                        echo "<td>" . htmlspecialchars($row['matricula_alumno']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['nombre_alumno']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['apellido_alumno']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['dni_alumno']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['fecha_nac_alumno']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['direccion_alumno']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['telf_alumno']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['email_cole_alumno']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['email_pri_alumno']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['sexo_user']) . "</td>";                        
-                        echo "</tr>";
-                    }
-                    ?>
-                </tbody>
-            </table>
-        <?php endif; ?>
+                <?php if ($total_pages > 1): ?>
+                    <div class="pagination">
+                        <!-- Enlaces de paginación -->
+                        <?php if ($page > 1): ?>
+                            <a href="?page=1&results=<?php echo $limit_number; ?>">Primera</a>
+                            <a href="?page=<?php echo $page - 1; ?>&results=<?php echo $limit_number; ?>">Anterior</a>
+                        <?php endif; ?>
+
+                        <span>Página <?php echo $page; ?> de <?php echo $total_pages; ?></span>
+
+                        <?php if ($page < $total_pages): ?>
+                            <a href="?page=<?php echo $page + 1; ?>&results=<?php echo $limit_number; ?>">Siguiente</a>
+                            <a href="?page=<?php echo $total_pages; ?>&results=<?php echo $limit_number; ?>">Última</a>
+                        <?php endif; ?>
+                    </div>
+                <?php endif; ?>
+                
+                <!-- Tabla con los resultados -->
+                <table id="tbl-content">
+                    <thead>
+                        <tr>
+                            <th>Matrícula</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>DNI</th>
+                            <th>Fecha de Nacimiento</th>
+                            <th>Dirección</th>
+                            <th>Teléfono</th>
+                            <th>Email del Colegio</th>
+                            <th>Email Personal</th>
+                            <th>Sexo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        while ($row = mysqli_fetch_assoc($data)) {
+                            echo "<tr>";
+                            echo "<td>" . htmlspecialchars($row['matricula_alumno']) . "</td>";
+                            echo "<td>" . htmlspecialchars($row['nombre_alumno']) . "</td>";
+                            echo "<td>" . htmlspecialchars($row['apellido_alumno']) . "</td>";
+                            echo "<td>" . htmlspecialchars($row['dni_alumno']) . "</td>";
+                            echo "<td>" . htmlspecialchars($row['fecha_nac_alumno']) . "</td>";
+                            echo "<td>" . htmlspecialchars($row['direccion_alumno']) . "</td>";
+                            echo "<td>" . htmlspecialchars($row['telf_alumno']) . "</td>";
+                            echo "<td>" . htmlspecialchars($row['email_cole_alumno']) . "</td>";
+                            echo "<td>" . htmlspecialchars($row['email_pri_alumno']) . "</td>";
+                            echo "<td>" . htmlspecialchars($row['sexo_user']) . "</td>";                        
+                            echo "</tr>";
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            <?php endif; ?>
+        </div>
     </main>
 </body>
 </html>

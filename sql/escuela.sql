@@ -11,8 +11,8 @@ DROP DATABASE IF EXISTS bd_escuela;
         CREATE TABLE tbl_user (
             id_user int NOT NULL PRIMARY KEY AUTO_INCREMENT,
             id_rol int NOT NULL,
-            -- nombre_user varchar(30) NOT NULL,
-            -- apellidos_user varchar(40) NOT NULL,
+            nombre_user varchar(30) NOT NULL,
+            apellidos_user varchar(40) NOT NULL,
             email_cole_user varchar(40) NOT NULL UNIQUE,
             pwd_user char(60) NOT NULL
         );
@@ -78,38 +78,75 @@ DROP DATABASE IF EXISTS bd_escuela;
     (3, 'Educador'),
     (4, 'Conserje');
 
-    INSERT INTO tbl_user (id_rol, email_cole_user, pwd_user) VALUES
-    (1, 'admin@colegio.com', '$2y$10$ghDs4NA9mdKu7Sw3DPLQ9uDB5tnMrqBbEClRefXZ4jHSH9.R6OCFK'), -- Contraseña: Barcelona1234!
-    (2, 'secretaria@colegio.com', '$2y$10$ghDs4NA9mdKu7Sw3DPLQ9uDB5tnMrqBbEClRefXZ4jHSH9.R6OCFK'), -- Contraseña: Barcelona1234!
-    (3, 'profesor@colegio.com', '$2y$10$ghDs4NA9mdKu7Sw3DPLQ9uDB5tnMrqBbEClRefXZ4jHSH9.R6OCFK'), -- Contraseña: Barcelona1234!
-    (4, 'conserje@colegio.com', '$2y$10$ghDs4NA9mdKu7Sw3DPLQ9uDB5tnMrqBbEClRefXZ4jHSH9.R6OCFK'); -- Contraseña: Barcelona1234!
+    INSERT INTO tbl_user (id_rol, nombre_user, apellidos_user, email_cole_user, pwd_user) VALUES
+    (1, 'Sandra', 'Hernandez', 'admin@colegio.com', '$2y$10$ghDs4NA9mdKu7Sw3DPLQ9uDB5tnMrqBbEClRefXZ4jHSH9.R6OCFK'), -- Contraseña: Barcelona1234!
+    (2, 'Jaime', 'Gutierrez', 'secretaria@colegio.com', '$2y$10$ghDs4NA9mdKu7Sw3DPLQ9uDB5tnMrqBbEClRefXZ4jHSH9.R6OCFK'), -- Contraseña: Barcelona1234!
+    (3, 'Pablo', 'Casanovas', 'profesor@colegio.com', '$2y$10$ghDs4NA9mdKu7Sw3DPLQ9uDB5tnMrqBbEClRefXZ4jHSH9.R6OCFK'), -- Contraseña: Barcelona1234!
+    (4, 'Maria', 'Perez', 'conserje@colegio.com', '$2y$10$ghDs4NA9mdKu7Sw3DPLQ9uDB5tnMrqBbEClRefXZ4jHSH9.R6OCFK'); -- Contraseña: Barcelona1234!
 
     INSERT INTO tbl_alumnos (nombre_alumno, apellido_alumno, dni_alumno, fecha_nac_alumno, direccion_alumno, telf_alumno, email_cole_alumno, email_pri_alumno, sexo_user) VALUES
     ('Juan', 'Pérez López', '23456788A', '2005-04-15', 'Calle Mayor 123', '612345678', 'juan.perez@colegio.com', 'juan.perez@gmail.com', 'H'),
-    ('María', 'García Gómez', '72456789B', '2006-08-23', 'Avenida de la Paz 45', '622345678', 'maria.garcia@colegio.com', 'maria.garcia@yahoo.com', 'M');
+    ('María', 'García Gómez', '72456789B', '2006-08-23', 'Avenida de la Paz 45', '622345678', 'maria.garcia@colegio.com', 'maria.garcia@yahoo.com', 'M'),
+    ('Carlos', 'Sánchez Ruiz', '83654781C', '2004-11-12', 'Calle del Sol 78', '633456789', 'carlos.sanchez@colegio.com', 'carlos.sanchez@hotmail.com', 'H'),
+    ('Lucía', 'Martínez Díaz', '93765842D', '2005-07-20', 'Calle Libertad 98', '644567890', 'lucia.martinez@colegio.com', 'lucia.martinez@gmail.com', 'M'),
+    ('Pedro', 'Rodríguez Pérez', '12345678E', '2005-02-05', 'Calle del Mar 45', '655678901', 'pedro.rodriguez@colegio.com', 'pedro.rodriguez@yahoo.com', 'H'),
+    ('Ana', 'López Fernández', '23456789F', '2006-01-18', 'Avenida Andalucía 65', '666789012', 'ana.lopez@colegio.com', 'ana.lopez@gmail.com', 'M'),
+    ('Javier', 'González López', '34567890G', '2004-06-25', 'Calle del Río 34', '677890123', 'javier.gonzalez@colegio.com', 'javier.gonzalez@aol.com', 'H'),
+    ('Raquel', 'Hernández García', '45678901H', '2005-09-11', 'Calle del Sol 23', '688901234', 'raquel.hernandez@colegio.com', 'raquel.hernandez@outlook.com', 'M'),
+    ('David', 'Jiménez Martínez', '56789012I', '2006-03-02', 'Calle de la Paz 56', '699012345', 'david.jimenez@colegio.com', 'david.jimenez@yahoo.com', 'H'),
+    ('Sofía', 'Ramírez Sánchez', '67890123J', '2005-12-30', 'Avenida Madrid 12', '610123456', 'sofia.ramirez@colegio.com', 'sofia.ramirez@hotmail.com', 'M'),
+    ('Alberto', 'Fernández Gómez', '78901234K', '2004-10-01', 'Calle Los Pinos 67', '611234567', 'alberto.fernandez@colegio.com', 'alberto.fernandez@gmail.com', 'H'),
+    ('Beatriz', 'Díaz Jiménez', '89012345L', '2006-04-22', 'Calle Granada 89', '622345678', 'beatriz.diaz@colegio.com', 'beatriz.diaz@live.com', 'M'),
+    ('Ricardo', 'Muñoz Torres', '90123456M', '2005-06-09', 'Calle Roma 45', '633456789', 'ricardo.munoz@colegio.com', 'ricardo.munoz@outlook.com', 'H'),
+    ('Marina', 'Moreno Ruiz', '01234567N', '2004-05-15', 'Avenida Sevilla 23', '644567890', 'marina.moreno@colegio.com', 'marina.moreno@yahoo.com', 'M'),
+    ('Antonio', 'Álvarez Castro', '12345678O', '2005-01-30', 'Calle Zaragoza 34', '655678901', 'antonio.alvarez@colegio.com', 'antonio.alvarez@gmail.com', 'H'),
+    ('Pilar', 'Serrano Ruiz', '23456789P', '2006-02-19', 'Calle Ronda 90', '666789012', 'pilar.serrano@colegio.com', 'pilar.serrano@hotmail.com', 'M'),
+    ('Fernando', 'García Ruiz', '34567890Q', '2004-07-10', 'Avenida Cataluña 12', '677890123', 'fernando.garcia@colegio.com', 'fernando.garcia@live.com', 'H'),
+    ('Marta', 'Torres Sánchez', '45678901R', '2005-10-05', 'Calle San José 56', '688901234', 'marta.torres@colegio.com', 'marta.torres@gmail.com', 'M'),
+    ('Andrés', 'Lozano Pérez', '56789012S', '2006-12-02', 'Calle del Campo 34', '699012345', 'andres.lozano@colegio.com', 'andres.lozano@outlook.com', 'H'),
+    ('Isabel', 'Cruz Sánchez', '67890123T', '2005-04-13', 'Calle Tetuán 23', '610123456', 'isabel.cruz@colegio.com', 'isabel.cruz@hotmail.com', 'M'),
+    ('Luis', 'Vázquez García', '78901234U', '2004-02-28', 'Calle Fuerteventura 67', '611234567', 'luis.vazquez@colegio.com', 'luis.vazquez@gmail.com', 'H'),
+    ('Esther', 'Álvarez Pérez', '89012345V', '2006-05-22', 'Avenida León 45', '622345678', 'esther.alvarez@colegio.com', 'esther.alvarez@aol.com', 'M'),
+    ('Victor', 'Navarro López', '01234567W', '2005-11-12', 'Calle Toledo 67', '633456789', 'victor.navarro@colegio.com', 'victor.navarro@yahoo.com', 'H'),
+    ('Carmen', 'Silva Fernández', '12345678X', '2004-03-16', 'Calle Valencia 34', '644567890', 'carmen.silva@colegio.com', 'carmen.silva@aol.com', 'M'),
+    ('Santiago', 'Méndez Pérez', '23456789Y', '2006-09-25', 'Avenida Almería 12', '655678901', 'santiago.mendez@colegio.com', 'santiago.mendez@gmail.com', 'H'),
+    ('Eva', 'Gutiérrez Martínez', '34567890Z', '2005-12-10', 'Calle Badajoz 23', '666789012', 'eva.gutierrez@colegio.com', 'eva.gutierrez@live.com', 'M'),
+    ('Óscar', 'Moreno Sánchez', '45678901A', '2004-11-20', 'Calle Málaga 45', '677890123', 'oscar.moreno@colegio.com', 'oscar.moreno@outlook.com', 'H'),
+    ('Paula', 'Jiménez García', '56789012B', '2005-03-12', 'Calle Canarias 67', '688901234', 'paula.jimenez@colegio.com', 'paula.jimenez@gmail.com', 'M'),
+    ('Ramón', 'Sánchez Hernández', '67890123C', '2006-07-03', 'Calle Cuenca 56', '699012345', 'ramon.sanchez@colegio.com', 'ramon.sanchez@yahoo.com', 'H');
 
-    INSERT INTO tbl_asignaturas (nombre_asignatura) VALUES
+
+   INSERT INTO tbl_asignaturas (nombre_asignatura) VALUES
     ('Matemáticas'),
     ('Lengua y Literatura'),
     ('Inglés'),
     ('Historia'),
-    ('Educación Física');
+    ('Educación Física'),
+    ('Ciencias Sociales'),
+    ('Ciencias Naturales'),
+    ('Geografía'),
+    ('Filosofía'),
+    ('Tecnología');
 
     INSERT INTO tbl_asignatura_alumno (matricula_alumno, id_asignatura, nota_asignatura_alumno) VALUES
-    (1, 1, 85), -- Juan Pérez en Matemáticas
-    (1, 2, 90), -- Juan Pérez en Lengua y Literatura
-    (2, 1, 88), -- María García en Matemáticas
-    (2, 3, 92); -- María García en Inglés
+    (1, 1, 85), (1, 2, 90), (1, 3, 80),
+    (2, 1, 88), (2, 2, 92), (2, 3, 91),
+    (3, 1, 75), (3, 4, 82), (3, 5, 78),
+    (4, 1, 79), (4, 6, 85), (4, 7, 88),
+    (5, 8, 91), (5, 9, 87), (5, 10, 80),
+    (6, 1, 92), (6, 3, 89), (6, 7, 80),
+    (7, 2, 81), (7, 4, 79), (7, 5, 83),
+    (8, 1, 87), (8, 8, 90), (8, 6, 84),
+    (9, 3, 88), (9, 7, 80), (9, 4, 85),
+    (10, 2, 93), (10, 6, 88), (10, 5, 81),
+    (11, 5, 80), (11, 3, 79), (11, 7, 82);
 
     INSERT INTO tbl_cursos (nombre_curso) VALUES
-    ('1º ESO'),
-    ('2º ESO'),
-    ('3º ESO'),
-    ('4º ESO'),
-    ('Bachillerato');
+    ('1º ESO'), ('2º ESO'), ('3º ESO'), ('4º ESO'), ('Bachillerato');
 
     INSERT INTO tbl_cursos_asignaturas (fecha_asignatura_alumno, id_asignatura, id_curso) VALUES
-    ('2024-2025', 1, 1), -- Matemáticas en 1º ESO
-    ('2024-2025', 2, 1), -- Lengua y Literatura en 1º ESO
-    ('2024-2025', 3, 2), -- Inglés en 2º ESO
-    ('2024-2025', 4, 3); -- Historia en 3º ESO
+    ('2024-2025', 1, 1), ('2024-2025', 2, 1), ('2024-2025', 3, 2), 
+    ('2024-2025', 4, 2), ('2024-2025', 5, 3), ('2024-2025', 6, 3),
+    ('2024-2025', 7, 4), ('2024-2025', 8, 4), ('2024-2025', 9, 5);
+
+    

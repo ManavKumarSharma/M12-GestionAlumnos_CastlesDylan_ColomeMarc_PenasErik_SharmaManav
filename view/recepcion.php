@@ -71,16 +71,14 @@ $total_pages = ceil($total_records / $limit_number);
             </div>
         </nav>
         <div id="content-right" class="fuenteBlanca">
-            <div id="header-tbl">
-                
-            </div>
+
             
             <!-- Si no hay datos  -->
             <?php if(mysqli_num_rows($data) == 0): ?>
                 <span>No hay datos</span>
             <?php else: ?>
                 <!-- Formulario de selección de resultados por página -->
-                <form action="" method="GET">
+                <form action="" method="GET" id="cambiarNumMostrar">
                     <select name="results" id="results">
                         <option value="1" <?php if ($limit_number == 1) echo 'selected'; ?>>1</option>
                         <option value="5" <?php if ($limit_number == 5) echo 'selected'; ?>>5</option>
@@ -89,23 +87,6 @@ $total_pages = ceil($total_records / $limit_number);
                     </select>
                     <input type="hidden" name="resutlsbtn" value="<?php echo $page; ?>">
                 </form>
-
-                <?php if ($total_pages > 1): ?>
-                    <div class="pagination">
-                        <!-- Enlaces de paginación -->
-                        <?php if ($page > 1): ?>
-                            <a href="?page=1&results=<?php echo $limit_number; ?>">Primera</a>
-                            <a href="?page=<?php echo $page - 1; ?>&results=<?php echo $limit_number; ?>">Anterior</a>
-                        <?php endif; ?>
-
-                        <span>Página <?php echo $page; ?> de <?php echo $total_pages; ?></span>
-
-                        <?php if ($page < $total_pages): ?>
-                            <a href="?page=<?php echo $page + 1; ?>&results=<?php echo $limit_number; ?>">Siguiente</a>
-                            <a href="?page=<?php echo $total_pages; ?>&results=<?php echo $limit_number; ?>">Última</a>
-                        <?php endif; ?>
-                    </div>
-                <?php endif; ?>
                 
                 <!-- Tabla con los resultados -->
                 <table id="tbl-content">
@@ -143,6 +124,24 @@ $total_pages = ceil($total_records / $limit_number);
                     </tbody>
                 </table>
             <?php endif; ?>
+            <?php if ($total_pages > 1): ?>
+                    <div class="pagination">
+                    <span>Página <?php echo $page; ?> de <?php echo $total_pages; ?></span>
+                        <br><p></p>
+                        <!-- Enlaces de paginación -->
+                        <?php if ($page > 1): ?>
+                            <a class="noEstilosLink" href="?page=1&results=<?php echo $limit_number; ?>">Primera</a>
+                            <a class="noEstilosLink" href="?page=<?php echo $page - 1; ?>&results=<?php echo $limit_number; ?>">Anterior</a>
+                        <?php endif; ?>
+
+
+
+                        <?php if ($page < $total_pages): ?>
+                            <a class="noEstilosLink" href="?page=<?php echo $page + 1; ?>&results=<?php echo $limit_number; ?>">Siguiente</a>
+                            <a class="noEstilosLink" href="?page=<?php echo $total_pages; ?>&results=<?php echo $limit_number; ?>">Última</a>
+                        <?php endif; ?>
+                    </div>
+                <?php endif; ?>
         </div>
     </main>
 </body>

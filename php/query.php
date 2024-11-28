@@ -62,4 +62,12 @@ function getDataFromUser($mysqli, $matriculaAlu) {
         return $result;
     }
 }
+
+function getTotalUsersCount($mysqli) {
+    // Consulta para contar el número total de registros
+    $dinamicSql = "SELECT COUNT(*) AS total FROM tbl_alumnos";
+    $result = mysqli_query($mysqli, $dinamicSql);
+    $row = mysqli_fetch_assoc($result);
+    return $row['total']; // Devuelve el número total de registros
+}
 ?>

@@ -136,7 +136,9 @@ $total_pages = ceil($total_records / $limit_number);
                             echo "<td>" . htmlspecialchars($row['telf_alumno']) . "</td>";
                             echo "<td>" . htmlspecialchars($row['email_cole_alumno']) . "</td>";
                             echo "<td>" . htmlspecialchars($row['email_pri_alumno']) . "</td>";
-                            echo "<td>" . htmlspecialchars($row['sexo_user']) . "</td>";                        
+                            echo "<td>" . htmlspecialchars($row['sexo_user']) . "</td>";
+                            echo "<td class='celdaEditar' class='editarBoton' data-id='" . $row['matricula_alumno'] . "'><img id='iconoEditar' src='../img/iconoEditar.png'></td>";  
+                            echo "<td class='celdaEliminar' class='eliminarBoton' value='" . $row['matricula_alumno'] . "'><img id='iconoEliminar' src='../img/eliminarIcono.png'></td>";  
                             echo "</tr>";
                         }
                         ?>
@@ -145,5 +147,6 @@ $total_pages = ceil($total_records / $limit_number);
             <?php endif; ?>
         </div>
     </main>
+    <script src="../js/botonesAcciones.js"></script>
 </body>
 </html>

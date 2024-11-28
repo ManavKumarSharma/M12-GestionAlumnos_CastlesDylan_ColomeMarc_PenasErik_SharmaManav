@@ -190,3 +190,30 @@ body {
     padding: 0;
     justify-content: top;
 }
+
+.celdaEliminar {
+    background-color: rgb(170, 74, 74);
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+.celdaEliminar:hover {
+    background-color: rgb(174, 52, 52);
+    cursor: pointer;
+}
+.celdaEditar {
+    background-color: rgb(125, 117, 45);
+}
+.celdaEditar:hover {
+    background-color: rgb(180, 165, 23);
+    cursor: pointer;
+}
+#iconoEditar {
+    width: 2vh;
+    height: auto;
+}
+#iconoEliminar {
+    width: 2vh;
+    height: auto;
+}

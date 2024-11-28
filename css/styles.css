@@ -180,7 +180,7 @@
         #esconder {
             visibility: hidden;
         }
-
+        
         #esconder>button {
             background: none;
             background-color: white;
@@ -238,11 +238,9 @@
                 opacity: 95%;
                 visibility: hidden;
             }
-            
             .divHeader {
                 visibility: hidden;
             }
-            
             #esconder {
                 visibility: hidden;
             }

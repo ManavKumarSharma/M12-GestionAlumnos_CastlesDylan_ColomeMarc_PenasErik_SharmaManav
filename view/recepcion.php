@@ -96,12 +96,12 @@ $total_pages = ceil($total_records / $limit_number);
                             <th>Nombre</th>
                             <th>Apellido</th>
                             <th>DNI</th>
-                            <th>Fecha de Nacimiento</th>
-                            <th>Dirección</th>
+                            <th class="ocultar">Fecha de Nacimiento</th>
+                            <th class="ocultar">Dirección</th>
                             <th>Teléfono</th>
-                            <th>Email del Colegio</th>
-                            <th>Email Personal</th>
-                            <th>Sexo</th>
+                            <th class="ocultar">Email del Colegio</th>
+                            <th class="ocultar">Email Personal</th>
+                            <th class="ocultar">Sexo</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -112,12 +112,12 @@ $total_pages = ceil($total_records / $limit_number);
                             echo "<td>" . htmlspecialchars($row['nombre_alumno']) . "</td>";
                             echo "<td>" . htmlspecialchars($row['apellido_alumno']) . "</td>";
                             echo "<td>" . htmlspecialchars($row['dni_alumno']) . "</td>";
-                            echo "<td>" . htmlspecialchars($row['fecha_nac_alumno']) . "</td>";
-                            echo "<td>" . htmlspecialchars($row['direccion_alumno']) . "</td>";
+                            echo "<td class='ocultar'>" . htmlspecialchars($row['fecha_nac_alumno']) . "</td>";
+                            echo "<td class='ocultar'>" . htmlspecialchars($row['direccion_alumno']) . "</td>";
                             echo "<td>" . htmlspecialchars($row['telf_alumno']) . "</td>";
-                            echo "<td>" . htmlspecialchars($row['email_cole_alumno']) . "</td>";
-                            echo "<td>" . htmlspecialchars($row['email_pri_alumno']) . "</td>";
-                            echo "<td>" . htmlspecialchars($row['sexo_user']) . "</td>";                        
+                            echo "<td class='ocultar'>" . htmlspecialchars($row['email_cole_alumno']) . "</td>";
+                            echo "<td class='ocultar'>" . htmlspecialchars($row['email_pri_alumno']) . "</td>";
+                            echo "<td class='ocultar'>" . htmlspecialchars($row['sexo_user']) . "</td>";                        
                             echo "</tr>";
                         }
                         ?>

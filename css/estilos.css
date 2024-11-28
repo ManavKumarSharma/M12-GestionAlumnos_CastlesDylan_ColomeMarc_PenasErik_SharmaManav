@@ -251,3 +251,46 @@ body {
 table {
     border-radius: 8px;
 }
+
+@media(max-width:768px) {
+    #content {
+        height: 90%;
+    }
+    #header {
+        height: 10%;
+    }
+    #logo-iz,
+    #logo-cent {
+        height: 3vh;
+    }
+    #img-cerrarSesion {
+        height: 4vh;
+    }
+    #usrName {
+        font-size: 3vw;
+        text-align: right;
+    }
+    #img-userContainer {
+        display: none;
+    }
+    .pagination,
+    #tbl-content * {
+        font-size: 2.6vw;
+    }
+    .ocultar {
+        display: none;
+    }
+    #menu {
+        display: none;
+    }
+    #content-right {
+        width: 100%;
+    }
+    #results {
+        height: 80%;
+        font-size: 2vw;
+    }
+    #cambiarNumMostrar {
+        margin-left: 81%;
+    }
+}

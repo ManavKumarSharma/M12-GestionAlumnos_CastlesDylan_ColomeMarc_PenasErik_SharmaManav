@@ -96,12 +96,12 @@ $total_pages = ceil($total_records / $limit_number);
                             <th>Nombre</th>
                             <th>Apellido</th>
                             <th>DNI</th>
-                            <th class="ocultar">Fecha de Nacimiento</th>
-                            <th class="ocultar">Dirección</th>
+                            <th class='ocultar'>Fecha de Nacimiento</th>
+                            <th class='ocultar'>Dirección</th>
                             <th>Teléfono</th>
-                            <th class="ocultar">Email del Colegio</th>
-                            <th class="ocultar">Email Personal</th>
-                            <th class="ocultar">Sexo</th>
+                            <th class='ocultar'>Email del Colegio</th>
+                            <th class='ocultar'>Email Personal</th>
+                            <th class='ocultar'>Sexo</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -118,6 +118,8 @@ $total_pages = ceil($total_records / $limit_number);
                             echo "<td class='ocultar'>" . htmlspecialchars($row['email_cole_alumno']) . "</td>";
                             echo "<td class='ocultar'>" . htmlspecialchars($row['email_pri_alumno']) . "</td>";
                             echo "<td class='ocultar'>" . htmlspecialchars($row['sexo_user']) . "</td>";                        
+                            echo "<td class='celdaEditar' class='editarBoton' data-id='" . $row['matricula_alumno'] . "'><img id='iconoEditar' src='../img/iconoEditar.png'></td>";  
+                            echo "<td class='celdaEliminar' class='eliminarBoton' data-id='" . $row['matricula_alumno'] . "'><img id='iconoEliminar' src='../img/eliminarIcono.png'></td>";  
                             echo "</tr>";
                         }
                         ?>
@@ -144,5 +146,6 @@ $total_pages = ceil($total_records / $limit_number);
                 <?php endif; ?>
         </div>
     </main>
+    <script src="../js/botonesAcciones.js"></script>
 </body>
 </html>

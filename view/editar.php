@@ -6,7 +6,7 @@
 
     require '../php/connection/connection.php';
 
-    if(!isset($_POST["edit"])){
+    if(!isset($_GET["idAlumno"])){
         header("Location: ./recepcion.php");
         exit();
     }
@@ -21,11 +21,13 @@
 </head>
 <body>
     <form action="../php/editarProcess.php" method="post">
-        <!-- value='" . . "' -->
         <?php
-        $data = getDataFromUser($mysqli, $_POST["edit"]);
+        $data = getDataFromUser($mysqli, $_GET["idAlumno"]);
         if(mysqli_num_rows($data) > 0){
             $row = mysqli_fetch_assoc($data);
+            
+            echo "<input type='hidden' name='matricula' value='" . $row["matricula_alumno"] . "'>";
+            
             echo "<h4>Nombre</h4>
             <input type='text' id='nombreAlumno' name='name_al' value='" . $row["nombre_alumno"] ."'><br><br>";
 

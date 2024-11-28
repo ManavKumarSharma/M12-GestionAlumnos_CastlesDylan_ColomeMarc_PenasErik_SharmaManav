@@ -1,7 +1,7 @@
 <?php
 $host = "localhost";
 $user = "root";
-$password = "";
+$password = "1234";
 $dbname = "bd_escuela";
 
 try {

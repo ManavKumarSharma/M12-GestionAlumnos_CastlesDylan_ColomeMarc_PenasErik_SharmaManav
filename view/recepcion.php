@@ -69,8 +69,15 @@ $data = getUsersFromBBDD($mysqli);
                             <td><?php echo htmlspecialchars($row['email_pri_alumno']); ?></td>
                             <td><?php echo htmlspecialchars($row['sexo_user']); ?></td>
                             <td>
-                                <button>Editar</button>
-                                <button>Eliminar</button>
+                            <form action="./editar.php" method="post">
+                                <input type="hidden" name="edit" value="<?php echo $row['matricula_alumno']?>">
+                            <button type="submit">Editar</button>
+                            </form>
+                                
+                            <form action="./delete.php" method="post">
+                                <input type="hidden" name="del" value="<?php echo $row['matricula_alumno']?>">
+                                <button type="submit" name="<?php echo $row['matricula_alumno']?>">Eliminar</button>
+                            </form>
                             </td>
                         </tr>
                     <?php endwhile; ?>

@@ -21,6 +21,7 @@ $offset = ($page - 1) * $limit_number;
 $data = getUsersFromBBDD($mysqli, $limit_number, $offset);
 $total_records = getTotalUsersCount($mysqli);
 $total_pages = ceil($total_records / $limit_number);
+    
 ?>
 
 <!DOCTYPE html>
@@ -31,6 +32,7 @@ $total_pages = ceil($total_records / $limit_number);
     <link rel="stylesheet" href="../css/estilos.css">
     <title>Página principal</title>
     <script src="../js/recargarTabla.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <!-- Header de las paginas -->
@@ -38,7 +40,7 @@ $total_pages = ceil($total_records / $limit_number);
         <img id="logo-iz" src="../img/logoClase.png" alt="">
         <img id="logo-cent" src="../img/logo_fje.svg" alt="">
         <div id="btns-der">
-            <?php
+            <?php               
                 $rutaFotoPerfil = '../fotosPerfil/' . $_SESSION['session_user']['id'] . '.png';
             ?>
             <div id="img-userContainer">
@@ -143,9 +145,34 @@ $total_pages = ceil($total_records / $limit_number);
                             <a class="noEstilosLink" href="?page=<?php echo $total_pages; ?>&results=<?php echo $limit_number; ?>">Última</a>
                         <?php endif; ?>
                     </div>
-                <?php endif; ?>
+                <?php endif; 
+                // Script de Sweet Alert que aparece si viene de delete.php
+                    if (isset($_GET['success'])) {
+                        $mensaje = htmlspecialchars($_GET['success'], ENT_QUOTES, 'UTF-8');
+                        echo "<script>
+                                // Ejecuta el SweetAlert después de que la página esté completamente cargada
+                                
+                                    Swal.fire({
+                                        title: '¡Éxito!',
+                                        text: '$mensaje',
+                                        icon: 'success',
+                                        confirmButtonText: 'Aceptar'
+                                    });
+                                
+                            </script>";
+                    }
+                ?>
         </div>
     </main>
     <script src="../js/botonesAcciones.js"></script>
+    <script>
+        // Script para que el SweetAlert solo salga la 1ra vez que carga
+        window.onload = function () {
+            if (window.location.search.includes('success')) {
+                const newURL = window.location.origin + window.location.pathname;
+                window.history.replaceState({}, document.title, newURL);
+            }
+        };
+</script>
 </body>
 </html>

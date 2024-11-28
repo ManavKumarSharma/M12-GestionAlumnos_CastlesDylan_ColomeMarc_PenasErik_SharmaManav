@@ -106,9 +106,9 @@ body {
     height: 100%;
     width: 10%;
     background-color: #062F5D;
-    border-right-color: white;
+    border-right-color: #FFFFFF;
     box-sizing: border-box;
-    border-right: 2px solid #B7D1E4;
+    border-right: 2px solid #FFFFFF;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -182,16 +182,16 @@ body {
 }
 
 #tbl-content {
-    border: 1px solid white;
+    border: 1px solid black;
     border-collapse: collapse;
     width: 90%;
     max-width: 90%;
-    background-color: #39425D;
+    background-color: #FFFFFF;
 }
 
 #tbl-content thead th,
 #tbl-content tbody td {
-    border: 1px solid white;
+    border: 1px solid black;
     padding: 5px;
 }
 
@@ -227,6 +227,7 @@ body {
     width: 90%;
     display: table-column;
     text-align: center;
+    color: white
 }
 
 .noEstilosLink {
@@ -242,7 +243,11 @@ body {
 #results {
     border: none;
     background-color: #3975bb;
-    color: white;
+    color: #FFFFFF;
     font-size: 1vw;
     border-radius: 4px;
+}
+
+table {
+    border-radius: 8px;
 }

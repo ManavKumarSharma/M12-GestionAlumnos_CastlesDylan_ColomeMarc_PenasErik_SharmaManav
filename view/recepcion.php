@@ -70,7 +70,7 @@ $total_pages = ceil($total_records / $limit_number);
                 </div>
             </div>
         </nav>
-        <div id="content-right" class="fuenteBlanca">
+        <div id="content-right" class="fuenteNegra">
 
             
             <!-- Si no hay datos  -->

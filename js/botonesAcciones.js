@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const target = event.target.closest('.celdaEditar');
             if (target) {
                 const id = target.dataset.id;
-                window.location.href = "../php/editarProcess.php?idAlumno=" + id;
+                window.location.href = "../view/editar.php?idAlumno=" + id;
             }
         });
     }

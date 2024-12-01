@@ -23,8 +23,12 @@ require '../php/connection/connection.php';
 
 <body class="bg-light">
 <header id="header">
+
         <img id="logo-iz" src="../img/logoClase.png" alt="">
+        <a href="./recepcion.php" id="logo-cent">
         <img id="logo-cent" src="../img/logo_fje.svg" alt="">
+
+        </a>
         <div id="btns-der">
             <?php
             $rutaFotoPerfil = '../fotosPerfil/' . $_SESSION['session_user']['id'] . '.png';

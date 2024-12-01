@@ -71,6 +71,7 @@ $total_pages = ceil($total_records / $limit_number);
                     <p class="fuenteBlanca" id="textoCajas">Notas medias</p>
                 </div>
             </div>
+            <a href="./notas.php?idAlumno=1">Notas</a>
         </nav>
         <div id="content-right" class="fuenteNegra">
 

@@ -78,6 +78,16 @@ $total_pages = ceil($total_records / $limit_number);
                     </div>
                 </a>
             </div>
+            <div class="opcionCaja" id="cajaEditarNotas">
+                <a class="quitarEstilosBtn  activar" href="editarNotas.php">
+                    <div id="parteIconoCaja">
+                        <img src="../img/iconoEditar.png" class="simboloCaja">
+                    </div>
+                    <div id="parteNombreCaja">
+                        <p class="fuenteBlanca" id="textoCajas">Editar Notas</p>
+                    </div>
+                </a>
+            </div>
         </nav>
         <div id="content-right" class="fuenteNegra">
 
@@ -101,6 +111,7 @@ $total_pages = ceil($total_records / $limit_number);
                 <table id="tbl-content">
                     <thead>
                         <tr>
+                            <th></th>
                             <th>Matrícula</th>
                             <th>Nombre</th>
                             <th>Apellido</th>
@@ -117,6 +128,7 @@ $total_pages = ceil($total_records / $limit_number);
                         <?php
                         while ($row = mysqli_fetch_assoc($data)) {
                             echo "<tr>";
+                            echo "<td>  <input type='radio' name='alumno' value=".htmlspecialchars($row['matricula_alumno'])."></td>";
                             echo "<td>" . htmlspecialchars($row['matricula_alumno']) . "</td>";
                             echo "<td>" . htmlspecialchars($row['nombre_alumno']) . "</td>";
                             echo "<td>" . htmlspecialchars($row['apellido_alumno']) . "</td>";

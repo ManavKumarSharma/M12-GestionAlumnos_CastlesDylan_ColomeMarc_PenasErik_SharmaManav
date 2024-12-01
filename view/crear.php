@@ -46,41 +46,56 @@ require '../php/connection/connection.php';
                             <div class="col-md-6 mb-3">
                                 <label for="nombreAlumno" class="form-label">Nombre</label>
                                 <input type="text" id="nombreAlumno" name="name_al" class="form-control">
+                                <p class="errorCrear" id="nombreAlumnoError"></p>
                             </div>
 
                             <div class="col-md-6 mb-3">
                                 <label for="apellidosAlumno" class="form-label">Apellidos</label>
                                 <input type="text" id="apellidosAlumno" name="ap_al" class="form-control">
+                                <p class="errorCrear" id="apellidosAlumnoError"></p>
+
                             </div>
 
                             <div class="col-md-6 mb-3">
                                 <label for="nifNieAlumno" class="form-label">NIF</label>
                                 <input type="text" id="nifNieAlumno" name="nif_al" class="form-control">
+                                <p class="errorCrear" id="nifNieAlumnoError"></p>
+
                             </div>
 
                             <div class="col-md-6 mb-3">
                                 <label for="nacimientoAlumno" class="form-label">Fecha de nacimiento</label>
                                 <input type="date" id="nacimientoAlumno" name="fecha_al" class="form-control">
+                                <p class="errorCrear" id="nacimientoAlumnoError"></p>
+
                             </div>
 
                             <div class="col-md-6 mb-3">
                                 <label for="direccionAlumno" class="form-label">Dirección</label>
                                 <input type="text" id="direccionAlumno" name="dir_al" class="form-control">
+                                <p class="errorCrear" id="direccionAlumnoError"></p>
+
                             </div>
 
                             <div class="col-md-6 mb-3">
                                 <label for="telefonoAlumno" class="form-label">Teléfono</label>
                                 <input type="text" id="telefonoAlumno" name="tel_al" class="form-control">
+                                <p class="errorCrear" id="telefonoAlumnoError"></p>
+
                             </div>
 
                             <div class="col-md-6 mb-3">
                                 <label for="emailEscuelaAlumno" class="form-label">Email Escuela</label>
                                 <input type="email" id="emailEscuelaAlumno" name="em-esc_al" class="form-control">
+                                <p class="errorCrear" id="emailEscuelaAlumnoError"></p>
+
                             </div>
 
                             <div class="col-md-6 mb-3">
                                 <label for="emailPersonalAlumno" class="form-label">Email Personal</label>
                                 <input type="email" id="emailPersonalAlumno" name="em-per_al" class="form-control">
+                                <p class="errorCrear" id="emailPersonalAlumnoError"></p>
+
                             </div>
 
                             <div class="col-md-6 mb-3">

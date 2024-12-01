@@ -67,6 +67,13 @@ window.onload = function() {
     document.getElementById('emailPersonalAlumno').addEventListener('blur', function() {
         validarEmail(this);
     });
+
+    // VALIDACION SEXO (solo para crear)
+    if (document.getElementById('sexo_al')) {
+        document.getElementById('sexo_al').addEventListener('blur', function() {
+            validarSexo(this);
+        });
+    }
 };
 
 // ------------------------------------------------------------------------------------------------------------------
@@ -80,7 +87,8 @@ function validarFormulario() {
            validarDireccion(document.getElementById('direccionAlumno')) &&
            validarTelefono(document.getElementById('telefonoAlumno')) &&
            validarEmail(document.getElementById('emailEscuelaAlumno')) &&
-           validarEmail(document.getElementById('emailPersonalAlumno'));
+           validarEmail(document.getElementById('emailPersonalAlumno')) &&
+           validarSexo(document.getElementById('sexo_al'));
 }
 
 // ------------------------------------------------------------------------------------------------------------------
@@ -306,5 +314,20 @@ function validarEmail(input) {
     }
 
     mensajeError.textContent = "";
+    return true;
+}
+
+// ------------------------------------------------------------------------------------------------------------------
+
+// VALIDACION SEXO
+// - Que sea H o M
+
+function validarSexo(input) {
+    const sexoEntrada = input.value;
+
+    if (sexoEntrada.trim() != "H" || sexoEntrada.trim() != "M") {
+        return false;
+    }
+
     return true;
 }

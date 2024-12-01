@@ -79,7 +79,7 @@ $total_pages = ceil($total_records / $limit_number);
                 </a>
             </div>
             <div class="opcionCaja" id="cajaEditarNotasDesactivado">
-                <a class="quitarEstilosBtn" id="activar" href="editarNotas.php">
+                <a class="quitarEstilosBtn" id="activar">
                     <div id="parteIconoCaja">
                         <img src="../img/iconoEditar.png" class="simboloCaja">
                     </div>
@@ -88,7 +88,6 @@ $total_pages = ceil($total_records / $limit_number);
                     </div>
                 </a>
             </div>
-            <a href="./notas.php?idAlumno=1">Notas</a>
         </nav>
         <div id="content-right" class="fuenteNegra">
 

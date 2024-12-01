@@ -104,9 +104,6 @@
                                     }                         
                                 }
                             }
-                            if (!$cursoExiste) {
-                                echo "Este alumno no pertenece a ninugn curso.";
-                            }
 
                             ?>
                         </tr>

@@ -53,10 +53,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // Cambiar el color de fondo de la caja según la selección
         if (algunoSeleccionado) {
             document.getElementById('activar').style.pointerEvents = 'all';
-            document.getElementById('activar').href = "../php/editarNotas.php?idAlumno=" + valorSeleccionado;
             if (document.getElementById('cajaEditarNotasDesactivado')) {
                 document.getElementById('cajaEditarNotasDesactivado').id = 'cajaEditarNotasActivado'; 
             };
+            document.getElementById('activar').href = "../view/notas.php?idAlumno=" + valorSeleccionado;
         }
     };
 

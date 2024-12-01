@@ -1,5 +1,11 @@
 <?php
 
+    // Verificamos si existe la variable de SESSION
+    if (!isset($_SESSION['session_user'])) {
+        header('Location: ./index.php');
+        exit;
+    }
+
     // Importamos los archivos necesarios
     require_once '../php/functions.php';
     require_once '../php/query.php';

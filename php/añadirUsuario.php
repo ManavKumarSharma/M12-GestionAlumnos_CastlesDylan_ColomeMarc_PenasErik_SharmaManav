@@ -1,5 +1,11 @@
 <?php
 
+// Verificamos si existe la variable de SESSION
+if (!isset($_SESSION['session_user'])) {
+    header('Location: ../view/index.php');
+    exit;
+}
+
 require_once '../php/connection/connection.php';
 
 $nombre = htmlspecialchars(mysqli_real_escape_string($mysqli,trim($_POST['name_al'])));

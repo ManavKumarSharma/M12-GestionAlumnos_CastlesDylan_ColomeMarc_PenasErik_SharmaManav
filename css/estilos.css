@@ -133,16 +133,24 @@
             aspect-ratio: 1;
         }
         
-        #cajaCrearAlumno,
-        #cajaEditarNotas {
+        #cajaCrearAlumno, #cajaEditarNotasActivado {
             background-color: #61B546;
             cursor: pointer;
         }
         
-        #cajaCrearAlumno:hover,
-        #cajaEditarNotas:hover {
+        #cajaCrearAlumno:hover, #cajaEditarNotasActivado:hover
+        {
             background-color: #0C735E;
         }
+
+        #cajaEditarNotasDesactivado {
+            background-color: grey;
+        }
+
+        #activar {
+            pointer-events: none;
+        }
+        
         
         #cajaNotasMedias {
             background-color: #4EA64B;

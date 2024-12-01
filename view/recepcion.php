@@ -107,7 +107,7 @@ $total_pages = ceil($total_records / $limit_number);
                     <tbody>
                         <?php
                         while ($row = mysqli_fetch_assoc($data)) {
-                            echo "<tr>";
+                            echo "<tr class='rowTable'>";
                             echo "<td>" . htmlspecialchars($row['matricula_alumno']) . "</td>";
                             echo "<td>" . htmlspecialchars($row['nombre_alumno']) . "</td>";
                             echo "<td>" . htmlspecialchars($row['apellido_alumno']) . "</td>";

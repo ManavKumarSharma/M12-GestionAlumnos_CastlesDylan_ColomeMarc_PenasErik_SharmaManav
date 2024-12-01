@@ -187,6 +187,7 @@ body {
     width: 90%;
     max-width: 90%;
     background-color: #FFFFFF;
+    overflow: hidden;
 }
 
 #tbl-content thead th,
@@ -279,6 +280,9 @@ table {
     height: auto;
 }
 
+.rowTable:hover {
+    background-color: #9d9dcf;
+}
 
 @media(max-width:768px) {
     #content {

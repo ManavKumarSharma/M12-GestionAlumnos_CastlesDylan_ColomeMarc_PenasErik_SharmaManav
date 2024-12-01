@@ -23,8 +23,10 @@ document.addEventListener('DOMContentLoaded', () => {
             // Verifica si el elemento clicado tiene la clase 'editarBoton'
             const target = event.target.closest('.celdaEliminar');
             if (target) {
+                const urlActual = window.location.href; // url para mantener cualquier filtro (variables GET)
                 const id = target.dataset.id;
-                window.location.href = "../php/delete.php?idAlumno=" + id;
+                window.location.href = "../php/delete.php?idAlumno=" + id + "&urlDevuelta=" + urlActual;
+                alert(urlActual);
             }
         });
     }

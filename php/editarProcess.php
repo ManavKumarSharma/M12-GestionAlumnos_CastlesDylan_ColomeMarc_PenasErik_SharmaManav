@@ -71,7 +71,7 @@
         header("Location: ../view/recepcion.php");
         exit();
     } catch (Exception $e) {
-        echo "Error al crear usuario: " . $e->getMessage();
+        echo "Error al editar alumno: " . $e->getMessage();
         die();
     }
     

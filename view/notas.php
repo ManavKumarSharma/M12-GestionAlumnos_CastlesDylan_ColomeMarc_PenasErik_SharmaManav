@@ -32,7 +32,6 @@
     <input type='hidden' name='matricula' value="<?php echo $rowUser["matricula_alumno"];  ?>">
         <h3><?php echo $rowUser["nombre_alumno"] . " " . $rowUser["apellido_alumno"]; ?></h3>
             <?php
-            echo $thisYear;
             $sqlAsignaturas = "SELECT * FROM tbl_asignaturas 
                                INNER JOIN tbl_cursos_asignaturas ON tbl_cursos_asignaturas.id_asignatura = tbl_asignaturas.id_asignatura
                                INNER JOIN tbl_asignatura_alumno ON tbl_asignatura_alumno.id_asignatura = tbl_asignaturas.id_asignatura
@@ -52,7 +51,9 @@
 
                 // Cerramos el stmt
                 mysqli_stmt_close($stmt);
-            }    
+            }   
+            $curso = mysqli_fetch_assoc($result);
+            echo "<h5>" . $curso["nombre_curso"] . " (" . $curso["fecha_asignatura_alumno"] . ")</h5>";
             ?>
             <table id="tbl-content">
                     <thead>
@@ -62,7 +63,7 @@
                             $cursoExiste = false;
                             foreach ($result as $fila) {
                                 if ($fila["fecha_asignatura_alumno"] == $formatoCursoEmpieza) {
-                                    echo '<th>' . $fila["nombre_curso"] . $fila["fecha_asignatura_alumno"] . $fila["nombre_asignatura"] . '</th>';
+                                    echo '<th>' . $fila["nombre_asignatura"] . '</th>';
                                     $cursoExiste = true;
                                 }                         
                             }
@@ -71,13 +72,10 @@
                                 $cursoExiste = false;
                                 foreach ($result as $fila) {
                                     if ($fila["fecha_asignatura_alumno"] == $formatoCursoEmpieza) {
-                                        echo '<th>' . $fila["nombre_curso"] . $fila["fecha_asignatura_alumno"] . $fila["nombre_asignatura"] . '</th>';
+                                        echo '<th>' . $fila["nombre_asignatura"] . '</th>';
                                         $cursoExiste = false;
                                     }                         
                                 }
-                            }
-                            if (!$cursoExiste) {
-                                echo "Este alumno no pertenece a ninugn curso.";
                             }
 
                             ?>
@@ -90,8 +88,7 @@
                             $cursoExiste = false;
                             foreach ($result as $fila) {
                                 if ($fila["fecha_asignatura_alumno"] == $formatoCursoEmpieza) {
-                                    echo '<td><input type="text" value="' . $fila["nota_asignatura_alumno"] . '"></input></td>';
-                                    $cursoExiste = true;
+                                    echo '<td><input type="number" name="notas[' . $fila["id_asignatura"] . ']" value="' . $fila["nota_asignatura_alumno"] . '" class="form-control"></td>';                                    $cursoExiste = true;
                                 }                         
                             }
                             if (!$cursoExiste) {
@@ -99,25 +96,21 @@
                                 $cursoExiste = false;
                                 foreach ($result as $fila) {
                                     if ($fila["fecha_asignatura_alumno"] == $formatoCursoEmpieza) {
-                                        echo '<td><input type="text" value="' . $fila["nota_asignatura_alumno"] . '"></input></td>';
+                                        echo '<td><input type="number" name="notas[' . $fila["id_asignatura"] . ']" value="' . $fila["nota_asignatura_alumno"] . '" class="form-control"></td>';                                    $cursoExiste = true;
                                         $cursoExiste = false;
                                     }                         
                                 }
                             }
 
+                            if (!$cursoExiste) {
+                                echo "Este alumno no pertenece a ninugn curso.";
+                            }
+
                             ?>
                         </tr>
-                        
-                        
                     </tbody>
                 </table>
             <input type='submit' id='botonSubmit' value='Modificar' name='envioEdit'>
-        <?php
-
-            // try{
-            //     $sqlNotas = "INSERT INTO tbl_asignatura_alumno VALUES (?,?,?)";
-            // }
-        ?>
     </form>
     
 </body>

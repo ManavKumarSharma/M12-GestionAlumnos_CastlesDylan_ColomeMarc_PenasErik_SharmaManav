@@ -149,4 +149,38 @@ DROP DATABASE IF EXISTS bd_escuela;
     ('2024-2025', 4, 2), ('2024-2025', 5, 3), ('2024-2025', 6, 3),
     ('2024-2025', 7, 4), ('2024-2025', 8, 4), ('2024-2025', 9, 5);
 
+    INSERT INTO tbl_cursos_asignaturas (fecha_asignatura_alumno, id_asignatura, id_curso) VALUES
+    ('2023-2024', 1, 1), ('2023-2024', 2, 1), ('2023-2024', 3, 2), 
+    ('2023-2024', 4, 2), ('2023-2024', 5, 3), ('2023-2024', 6, 3),
+    ('2023-2024', 7, 4), ('2023-2024', 8, 4), ('2023-2024', 9, 5);
+
     
+
+    -- INSERTS BIEN
+
+    INSERT INTO tbl_asignatura_alumno (matricula_alumno, id_asignatura, nota_asignatura_alumno) VALUES
+    (1, 1, 85),
+    (1, 2, 88),
+    (1, 3, 75),
+    (1, 4, 79),
+    (1, 5, 92),
+    (1, 6, 87),
+    (1, 7, 79),
+    (1, 8, 92),
+    (1, 9, 87),
+    (1, 10, 87);
+
+    INSERT INTO tbl_cursos (nombre_curso) VALUES
+    ('1º ESO'), ('2º ESO'), ('3º ESO'), ('4º ESO'), ('Bachillerato');
+
+    INSERT INTO tbl_cursos_asignaturas (fecha_asignatura_alumno, id_asignatura, id_curso) VALUES
+    ('2024-2025', 1, 1), ('2024-2025', 2, 1), ('2024-2025', 3, 1), 
+    ('2024-2025', 4, 1), ('2024-2025', 5, 1), ('2024-2025', 6, 1),
+    ('2024-2025', 7, 1), ('2024-2025', 8, 1), ('2024-2025', 9, 1),
+    ('2024-2025', 10, 1);
+
+    INSERT INTO tbl_cursos_asignaturas (fecha_asignatura_alumno, id_asignatura, id_curso) VALUES
+    ('2023-2024', 1, 2), ('2023-2024', 2, 2), ('2023-2024', 3, 2), 
+    ('2023-2024', 4, 2), ('2023-2024', 5, 2), ('2023-2024', 6, 2),
+    ('2023-2024', 7, 2), ('2023-2024', 8, 2), ('2023-2024', 9, 2),
+    ('2023-2024', 10, 2);

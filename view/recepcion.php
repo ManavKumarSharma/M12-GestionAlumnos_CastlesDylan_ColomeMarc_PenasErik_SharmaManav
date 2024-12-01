@@ -88,6 +88,7 @@ $total_pages = ceil($total_records / $limit_number);
                     </div>
                 </a>
             </div>
+            <a href="./notas.php?idAlumno=1">Notas</a>
         </nav>
         <div id="content-right" class="fuenteNegra">
 

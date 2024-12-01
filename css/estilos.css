@@ -279,7 +279,6 @@ table {
     height: auto;
 }
 
-
 @media(max-width:768px) {
     #content {
         height: 90%;

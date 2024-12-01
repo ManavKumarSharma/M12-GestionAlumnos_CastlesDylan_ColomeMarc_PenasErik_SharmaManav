@@ -150,17 +150,35 @@ $total_pages = ceil($total_records / $limit_number);
                 // Script de Sweet Alert que aparece si viene de delete.php
                     if (isset($_GET['success'])) {
                         $mensaje = htmlspecialchars($_GET['success'], ENT_QUOTES, 'UTF-8');
-                        echo "<script>
-                                // Ejecuta el SweetAlert después de que la página esté completamente cargada
-                                
+                        echo "<script>                                
                                     Swal.fire({
                                         title: '¡Éxito!',
                                         text: '$mensaje',
                                         icon: 'success',
                                         confirmButtonText: 'Aceptar'
                                     });
-                                
                             </script>";
+                    }
+                // Script de Sweet Alert que aparece si viene de delete.php
+                    if (isset($_GET['exito'])) {
+                        switch ($_GET['exito']) {
+                            case 'notas_actualizadas':
+                                    echo "<script>
+                                    document.addEventListener('DOMContentLoaded', () => {
+                                        Swal.fire({
+                                            title: '¡Éxito!',
+                                            text: 'Se han actualizado las notas con Éxito',
+                                            icon: 'success',
+                                            confirmButtonText: 'Aceptar'
+                                        });
+                                    });
+                                    </script>";
+                                break;
+                            
+                            default:
+                                # code...
+                                break;
+                        }
                     }
                 ?>
         </div>
@@ -169,7 +187,7 @@ $total_pages = ceil($total_records / $limit_number);
     <script>
         // Script para que el SweetAlert solo salga la 1ra vez que carga
         window.onload = function () {
-            if (window.location.search.includes('success')) {
+            if (window.location.search.includes('success') || window.location.search.includes('exito')) {
                 const newURL = window.location.origin + window.location.pathname;
                 window.history.replaceState({}, document.title, newURL);
             }

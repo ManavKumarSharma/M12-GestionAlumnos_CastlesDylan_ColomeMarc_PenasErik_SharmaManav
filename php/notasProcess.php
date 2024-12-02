@@ -1,8 +1,9 @@
 <?php
+    session_start();
 
     // Verificamos si existe la variable de SESSION
     if (!isset($_SESSION['session_user'])) {
-        header('Location: ./index.php');
+        header('Location: ../view/index.php');
         exit;
     }
 
@@ -25,7 +26,7 @@
     // }
 
     if(!isset($_POST["notas"]) || !is_array($_POST['notas'])){
-        header("Location: ./recepcion.php");
+        header("Location: ../view/recepcion.php");
         exit();
     }    
     

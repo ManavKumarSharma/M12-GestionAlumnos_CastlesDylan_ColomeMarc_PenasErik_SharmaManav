@@ -127,37 +127,6 @@ DROP DATABASE IF EXISTS bd_escuela;
     ('Geografía'),
     ('Filosofía'),
     ('Tecnología');
---
-
-    INSERT INTO tbl_asignatura_alumno (matricula_alumno, id_asignatura, nota_asignatura_alumno) VALUES
-    (1, 1, 85), (1, 2, 90), (1, 3, 80),
-    (2, 1, 88), (2, 2, 92), (2, 3, 91),
-    (3, 1, 75), (3, 4, 82), (3, 5, 78),
-    (4, 1, 79), (4, 6, 85), (4, 7, 88),
-    (5, 8, 91), (5, 9, 87), (5, 10, 80),
-    (6, 1, 92), (6, 3, 89), (6, 7, 80),
-    (7, 2, 81), (7, 4, 79), (7, 5, 83),
-    (8, 1, 87), (8, 8, 90), (8, 6, 84),
-    (9, 3, 88), (9, 7, 80), (9, 4, 85),
-    (10, 2, 93), (10, 6, 88), (10, 5, 81),
-    (11, 5, 80), (11, 3, 79), (11, 7, 82);
-
-    INSERT INTO tbl_cursos (nombre_curso) VALUES
-    ('1º ESO'), ('2º ESO'), ('3º ESO'), ('4º ESO'), ('Bachillerato');
-
-    INSERT INTO tbl_cursos_asignaturas (fecha_asignatura_alumno, id_asignatura, id_curso) VALUES
-    ('2024-2025', 1, 1), ('2024-2025', 2, 1), ('2024-2025', 3, 2), 
-    ('2024-2025', 4, 2), ('2024-2025', 5, 3), ('2024-2025', 6, 3),
-    ('2024-2025', 7, 4), ('2024-2025', 8, 4), ('2024-2025', 9, 5);
-
-    INSERT INTO tbl_cursos_asignaturas (fecha_asignatura_alumno, id_asignatura, id_curso) VALUES
-    ('2023-2024', 1, 1), ('2023-2024', 2, 1), ('2023-2024', 3, 2), 
-    ('2023-2024', 4, 2), ('2023-2024', 5, 3), ('2023-2024', 6, 3),
-    ('2023-2024', 7, 4), ('2023-2024', 8, 4), ('2023-2024', 9, 5);
-
-    
-
-    -- INSERTS BIEN
 
     INSERT INTO tbl_asignatura_alumno (matricula_alumno, id_asignatura, nota_asignatura_alumno) VALUES
     (1, 1, 85),

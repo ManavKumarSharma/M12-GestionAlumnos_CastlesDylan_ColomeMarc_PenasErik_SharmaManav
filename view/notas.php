@@ -26,9 +26,9 @@ $nextYear = $thisYear + 1;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="../js/validateEdit.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/estilos.css">
+    <script src="../js/validarNotas.js"></script>
     <title>Modificar Notas</title>
 </head>
 
@@ -46,7 +46,7 @@ $nextYear = $thisYear + 1;
             <img src="<?php echo file_exists($rutaFotoPerfil) ? $rutaFotoPerfil : '../img/profilePic.png' ?>" alt="" id="img-user">
         </div>
         <p id="usrName"><?php echo $_SESSION['session_user']['name'] . ' ' .  $_SESSION['session_user']['surname'] ?></p>
-        <a id="btn-cerrarSesion"><img src="../img/off.png" alt="" id="img-cerrarSesion"></a>
+        <a id="btn-cerrarSesion" href="../php/cerrarSesionProcess.php"><img src="../img/off.png" alt="" id="img-cerrarSesion"></a>
     </div>
 </header>
 
@@ -57,7 +57,7 @@ $nextYear = $thisYear + 1;
                 <div class="card-body">
                     <h3 class="card-title text-center mb-4">Modificar Notas de <?php echo $rowUser["nombre_alumno"] . " " . $rowUser["apellido_alumno"]; ?></h3>
 
-                    <form action="../php/notasProcess.php" method="post">
+                    <form action="../php/notasProcess.php" method="post" id="formulario">
                         <input type='hidden' name='matricula' value="<?php echo $rowUser["matricula_alumno"]; ?>">
 
                         <?php
@@ -95,6 +95,7 @@ $nextYear = $thisYear + 1;
                                     <div class="col-md-6 mb-3">
                                         <label for="asignatura_' . $fila["id_asignatura"] . '" class="form-label">' . $fila["nombre_asignatura"] . '</label>
                                         <input type="number" name="notas[' . $fila["id_asignatura"] . ']" value="' . $fila["nota_asignatura_alumno"] . '" class="form-control" id="asignatura_' . $fila["id_asignatura"] . '">
+                                        <p id="asignatura_' . $fila["id_asignatura"] . 'Error" style="color: red;"></p>
                                     </div>';
                                     $cursoExiste = true;
                                 }                         
@@ -108,6 +109,7 @@ $nextYear = $thisYear + 1;
                                         <div class="col-md-6 mb-3">
                                             <label for="asignatura_' . $fila["id_asignatura"] . '" class="form-label">' . $fila["nombre_asignatura"] . '</label>
                                             <input type="number" name="notas[' . $fila["id_asignatura"] . ']" value="' . $fila["nota_asignatura_alumno"] . '" class="form-control" id="asignatura_' . $fila["id_asignatura"] . '">
+                                            <p id="asignatura_' . $fila["id_asignatura"] . 'Error" style="color: red;"></p>
                                         </div>';
                                     }                         
                                 }

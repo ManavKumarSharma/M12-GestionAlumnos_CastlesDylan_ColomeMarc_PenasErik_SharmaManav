@@ -1,7 +1,7 @@
 <?php
 $host = "localhost";
 $user = "root";
-$password = "1234";
+$password = "";
 $dbname = "bd_escuela";
 
 try {
@@ -13,5 +13,6 @@ try {
     die("Conexión fallida.");
 }
 
-// NO TOQUEIS EL ARCHIVO MOROSOS
+// NO TOQUEIS EL ARCHIVO MOROSOS 
+// A callar gordito
 ?>

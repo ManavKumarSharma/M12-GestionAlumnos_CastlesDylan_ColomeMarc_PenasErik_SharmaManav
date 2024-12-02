@@ -201,6 +201,19 @@
             background-color: #FFFFFF;
         }
 
+        .blanco {
+            color:white
+        }
+
+        .margin-bot {
+            margin-bottom: 2vh;
+        }
+
+        .arreglarForm {
+            max-width: none !important;
+            width: 100% !important;
+        }
+
         #tbl-content thead th,
         #tbl-content tbody td {
             border: 1px solid black;

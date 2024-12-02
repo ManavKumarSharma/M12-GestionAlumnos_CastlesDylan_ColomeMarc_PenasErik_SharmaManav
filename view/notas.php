@@ -4,7 +4,6 @@ session_start();
 // Importamos los archivos necesarios
 require_once '../php/functions.php';
 require_once '../php/query.php';
-
 require '../php/connection/connection.php';
 
 if (!isset($_GET["idAlumno"])) {
@@ -80,16 +79,21 @@ $nextYear = $thisYear + 1;
 
                             // Cerramos el stmt
                             mysqli_stmt_close($stmt);
-                        }   
-                        $curso = mysqli_fetch_assoc($result);
-                        echo "<h5 class='text-center mb-4'>" . $curso["nombre_curso"] . " (" . $curso["fecha_asignatura_alumno"] . ")</h5>";
+                        }
+
+                        // Convertir los resultados en un array
+                        $asignaturas = mysqli_fetch_all($result, MYSQLI_ASSOC);
+                        if (count($asignaturas) > 0) {
+                            $curso = $asignaturas[0];  // Suponiendo que hay un curso disponible
+                            echo "<h5 class='text-center mb-4'>" . $curso["nombre_curso"] . " (" . $curso["fecha_asignatura_alumno"] . ")</h5>";
+                        }
                         ?>
 
                         <div class="row">
                             <?php
                             $formatoCursoEmpieza = $thisYear . "-" . $nextYear;
                             $cursoExiste = false;
-                            foreach ($result as $fila) {
+                            foreach ($asignaturas as $fila) {
                                 if ($fila["fecha_asignatura_alumno"] == $formatoCursoEmpieza) {
                                     echo '
                                     <div class="col-md-6 mb-3">
@@ -103,7 +107,7 @@ $nextYear = $thisYear + 1;
 
                             if (!$cursoExiste) {
                                 $formatoCursoAcaba = $lastYear . "-" . $thisYear;
-                                foreach ($result as $fila) {
+                                foreach ($asignaturas as $fila) {
                                     if ($fila["fecha_asignatura_alumno"] == $formatoCursoAcaba) {
                                         echo '
                                         <div class="col-md-6 mb-3">
@@ -114,15 +118,19 @@ $nextYear = $thisYear + 1;
                                     }                         
                                 }
                             }
-
-                            if (!$cursoExiste) {
-                                echo "<div class='col-12 text-center'>Este alumno no pertenece a ningún curso.</div>";
-                            }
                             ?>
-                        </div>
 
-                        <div class="text-center mt-4">
-                            <button type="submit" id="botonSubmit" name="envioEdit" class="btn btn-primary w-100">Modificar</button>
+
+                            <?php if (!$cursoExiste): ?>
+                                <div class='col-12 text-center'>
+                                    Este alumno no pertenece a ningún curso. <br>
+                                    <a href="./recepcion.php">Volver a la tabla</a>        
+                                </div>
+                            <?php else: ?>
+                                <div class="text-center mt-4">
+                                    <button type="submit" id="botonSubmit" name="envioEdit" class="btn btn-primary w-100">Modificar</button>
+                                </div>
+                            <?php endif; ?>
                         </div>
                     </form>
                 </div>

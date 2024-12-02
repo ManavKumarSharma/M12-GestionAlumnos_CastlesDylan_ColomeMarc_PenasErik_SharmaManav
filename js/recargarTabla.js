@@ -1,7 +1,6 @@
-window.onload = function () {
-    const select= document.getElementById('resutls_form');
-
-    select.addEventListener('change', function () {
-        this.form.submit();
-    })
-}
+// Detecta el cambio en el select y envía el formulario
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('results_select').addEventListener('change', function() {
+        document.getElementById('cambiarNumMostrar').submit();
+    });
+})

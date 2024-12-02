@@ -26,7 +26,7 @@ session_start();
     <header>
         <div class="divDelHeader">
             <div class="divLogo">
-                <img src="../img/logo2.png" alt="Logo jesuites" class="logo2">
+                <img src="../img/logo.png" alt="Logo jesuites" class="logo2">
             </div>
             <div class="btn-cerrar">
                 <button class="cerrar-menu" id="cerrar" onclick="abrirMenu()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" oncl><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#0054e6" d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"/></svg></button>
@@ -62,12 +62,6 @@ session_start();
                     echo '<span class="error">' . htmlspecialchars($errors['email']) . '</span><br>'; // EN CASO DE ERROR, LO MUESTRA
                 } 
                 ?>
-                <!-- ERROR BBDD -->
-                <?php
-                if (isset($errors['emailBBDD'])) { 
-                    echo '<span class="error">' . htmlspecialchars($errors['emailBBDD']) . '</span><br>'; // EN CASO DE ERROR, LO MUESTRA
-                } 
-                ?>
                 <br>
                 <label for="password" id="cambiar">Contraseña:</label>
                 <input type="password" name="password" id="password">
@@ -79,8 +73,8 @@ session_start();
                 ?>
                 <!-- ERROR BBDD -->
                 <?php
-                if (isset($errors['passwordBBDD'])) {
-                    echo '<span class="error">' . htmlspecialchars($errors['passwordBBDD']) . '</span><br>'; // EN CASO DE ERROR, LO MUESTRA
+                if (isset($errors['errorBBDD'])) {
+                    echo '<span class="error">' . htmlspecialchars($errors['errorBBDD']) . '</span><br>'; // EN CASO DE ERROR, LO MUESTRA
                 } 
                 ?>
                 <br>

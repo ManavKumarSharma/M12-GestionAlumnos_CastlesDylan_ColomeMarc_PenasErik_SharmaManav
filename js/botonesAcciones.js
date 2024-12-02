@@ -1,3 +1,6 @@
+// JS para las acciones de los botones
+
+// Editar
 document.addEventListener('DOMContentLoaded', () => {
     const tabla = document.querySelector('#tbl-content'); // Contenedor de la tabla
     if (tabla) {
@@ -10,26 +13,54 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+});
 
-    // Obtener los elementos
-    var modal = document.getElementById("miModal");
-    var btn = document.getElementById("abrirModalBtn");
-    var span = document.getElementById("cerrarModalBtn");
-
-    // Cuando el usuario hace clic en el botón, abre la modal
-    btn.onclick = function() {
-        modal.style.display = "block";
+// Eliminar
+document.addEventListener('DOMContentLoaded', () => {
+    const tabla = document.querySelector('#tbl-content'); // Contenedor de la tabla
+    if (tabla) {
+        tabla.addEventListener('click', (event) => {
+            // Verifica si el elemento clicado tiene la clase 'editarBoton'
+            const target = event.target.closest('.celdaEliminar');
+            if (target) {
+                const urlActual = window.location.href; // url para mantener cualquier filtro (variables GET)
+                const id = target.dataset.id;
+                window.location.href = "../php/delete.php?idAlumno=" + id + "&urlDevuelta=" + urlActual;
+            }
+        });
     }
+});
 
-    // Cuando el usuario hace clic en la "X", cierra la modal
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
+// Validar que usuario esta seleccionado
 
-    // Cuando el usuario hace clic fuera de la modal, también la cierra
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
+document.addEventListener('DOMContentLoaded', () => {
+    // Obtener todos los botones de radio con el nombre 'alumno'
+    let botonesBorrar = document.getElementsByName('alumno');
+
+    // Función para verificar si alguno está seleccionado
+    const verificarSeleccion = () => {
+        let algunoSeleccionado = false;
+
+        // Iterar sobre los radios y verificar si alguno está seleccionado
+        botonesBorrar.forEach(boton => {
+            if (boton.checked) {
+                algunoSeleccionado = true;
+                valorSeleccionado = boton.value;
+            }
+        });
+
+        // Cambiar el color de fondo de la caja según la selección
+        if (algunoSeleccionado) {
+            document.getElementById('activar').style.pointerEvents = 'all';
+            if (document.getElementById('cajaEditarNotasDesactivado')) {
+                document.getElementById('cajaEditarNotasDesactivado').id = 'cajaEditarNotasActivado'; 
+            };
+            document.getElementById('activar').href = "../view/notas.php?idAlumno=" + valorSeleccionado;
         }
-    }
+    };
+
+    // Añadir el evento 'click' a cada uno de los botones de radio
+    botonesBorrar.forEach(boton => {
+        boton.addEventListener('click', verificarSeleccion); // Actualizar al hacer clic
+    });
 });

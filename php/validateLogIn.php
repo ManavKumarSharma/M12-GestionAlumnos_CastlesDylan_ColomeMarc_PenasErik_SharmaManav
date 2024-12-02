@@ -1,4 +1,5 @@
 <?php
+
 // IMPORTAR LAS FUNCIONES NECESARIAS
 require_once './functions.php';
 

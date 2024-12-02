@@ -26,7 +26,7 @@ $result = mysqli_stmt_get_result($stmt);
 
 // Verificar si se encontró el usuario
 if (!($result && mysqli_num_rows($result) > 0)) {
-    $errors['emailBBDD'] = 'No existe ningún usuario con ese email.';
+    $errors['errorBBDD'] = 'Email o contraseña incorrectos.';
     redirectWithErrors('../view/index.php', $errors);
 }
 
@@ -36,7 +36,7 @@ $hashedPasswordFromDB = $row['pwd_user'];
 
 // Verificar la contraseña usando password_verify
 if (!password_verify($valoresBBDD['password'], $hashedPasswordFromDB)) {
-    $errors['passwordBBDD'] = 'La contraseña es incorrecta.';
+    $errors['errorBBDD'] = 'Email o contraseña incorrectos.';
     redirectWithErrors('../view/index.php', $errors);
 }
 

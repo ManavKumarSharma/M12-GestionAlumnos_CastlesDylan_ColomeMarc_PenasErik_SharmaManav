@@ -1,5 +1,12 @@
 <?php
 session_start();
+
+// Verificamos si existe la variable de SESSION
+if (!isset($_SESSION['session_user'])) {
+    header('Location: ./index.php');
+    exit;
+}
+
 // Importamos los archivos necesarios
 require_once '../php/functions.php';
 require_once '../php/query.php';
@@ -55,27 +62,31 @@ $data = getAvgMarkUsersFromBBDD($mysqli);
                     
                     <?php else: ?>
                         <!-- Inicio de tabla -->
-                        <table>
-                            <tr>
-                                <th>Matrícula alumno</th>
-                                <th>Nombre</th>
-                                <th>Apellidos</th>
-                                <th>Asignatura</th>
-                                <th>Nota media</th>
-                                <th>Curso</th>
-                            </tr>
-                        <?php while ($row = mysqli_fetch_assoc($data)): ?>
-                            <tbody>
-                                <tr class="rowTable"></tr>
-                                <td><?php echo $row['matricula_alumno'] ?></td>
-                                <td><?php echo $row['nombre_alumno'] ?></td>
-                                <td><?php echo $row['apellido_alumno'] ?></td>
-                                <td><?php echo $row['nombre_asignatura'] ?></td>
-                                <td><?php echo $row['nota_media'] ?></td>
-                                <td><?php echo $row['nombre_curso'] ?></td>
-                            </tbody>                            
-                        <?php endwhile; ?>
-                        </table>
+                        <table class="table table-striped table-hover table-bordered tablapeq">
+    <thead class="table-primary">
+        <tr>
+            <th>Matrícula alumno</th>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>Asignatura</th>
+            <th>Nota media</th>
+            <th>Curso</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php while ($row = mysqli_fetch_assoc($data)): ?>
+            <tr>
+                <td><?php echo $row['matricula_alumno'] ?></td>
+                <td><?php echo $row['nombre_alumno'] ?></td>
+                <td><?php echo $row['apellido_alumno'] ?></td>
+                <td><?php echo $row['nombre_asignatura'] ?></td>
+                <td><?php echo $row['nota_media'] ?></td>
+                <td><?php echo $row['nombre_curso'] ?></td>
+            </tr>
+        <?php endwhile; ?>
+    </tbody>
+</table>
+
                     <?php endif; ?>
                 </div>
             </div>

@@ -242,7 +242,7 @@ $data = getUsersFromBBDD($mysqli, $limit_number, $offset, $filters, $column_to_f
                 <table id="tbl-content">
                     <thead>
                         <tr>
-                            <th></th>
+                            <th class='ocultar'></th>
                             <th>Matrícula</th>
                             <th>Nombre</th>
                             <th>Apellido</th>
@@ -259,7 +259,7 @@ $data = getUsersFromBBDD($mysqli, $limit_number, $offset, $filters, $column_to_f
                         <?php
                         while ($row = mysqli_fetch_assoc($data)) {
                             echo "<tr class='rowTable'>";
-                            echo "<td><input type='radio' name='alumno' value=" . htmlspecialchars($row['matricula_alumno']) . "></td>";
+                            echo "<td class='ocultar'><input type='radio' name='alumno' value=" . htmlspecialchars($row['matricula_alumno']) . "></td>";
                             echo "<td>" . htmlspecialchars($row['matricula_alumno']) . "</td>";
                             echo "<td>" . htmlspecialchars($row['nombre_alumno']) . "</td>";
                             echo "<td>" . htmlspecialchars($row['apellido_alumno']) . "</td>";

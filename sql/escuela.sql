@@ -127,6 +127,7 @@ DROP DATABASE IF EXISTS bd_escuela;
     ('Geografía'),
     ('Filosofía'),
     ('Tecnología');
+--
 
     INSERT INTO tbl_asignatura_alumno (matricula_alumno, id_asignatura, nota_asignatura_alumno) VALUES
     (1, 1, 85), (1, 2, 90), (1, 3, 80),

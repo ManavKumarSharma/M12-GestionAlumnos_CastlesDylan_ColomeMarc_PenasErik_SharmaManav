@@ -26,7 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const urlActual = window.location.href; // url para mantener cualquier filtro (variables GET)
                 const id = target.dataset.id;
                 window.location.href = "../php/delete.php?idAlumno=" + id + "&urlDevuelta=" + urlActual;
-                alert(urlActual);
             }
         });
     }

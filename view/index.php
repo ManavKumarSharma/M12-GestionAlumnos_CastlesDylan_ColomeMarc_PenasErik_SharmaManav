@@ -62,12 +62,6 @@ session_start();
                     echo '<span class="error">' . htmlspecialchars($errors['email']) . '</span><br>'; // EN CASO DE ERROR, LO MUESTRA
                 } 
                 ?>
-                <!-- ERROR BBDD -->
-                <?php
-                if (isset($errors['emailBBDD'])) { 
-                    echo '<span class="error">' . htmlspecialchars($errors['emailBBDD']) . '</span><br>'; // EN CASO DE ERROR, LO MUESTRA
-                } 
-                ?>
                 <br>
                 <label for="password" id="cambiar">Contraseña:</label>
                 <input type="password" name="password" id="password">
@@ -79,8 +73,8 @@ session_start();
                 ?>
                 <!-- ERROR BBDD -->
                 <?php
-                if (isset($errors['passwordBBDD'])) {
-                    echo '<span class="error">' . htmlspecialchars($errors['passwordBBDD']) . '</span><br>'; // EN CASO DE ERROR, LO MUESTRA
+                if (isset($errors['errorBBDD'])) {
+                    echo '<span class="error">' . htmlspecialchars($errors['errorBBDD']) . '</span><br>'; // EN CASO DE ERROR, LO MUESTRA
                 } 
                 ?>
                 <br>

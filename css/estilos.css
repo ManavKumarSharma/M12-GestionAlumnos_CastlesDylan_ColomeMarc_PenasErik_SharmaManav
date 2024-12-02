@@ -481,10 +481,24 @@ color: red
 }
 
 #cambiarNumMostrar {
-    margin-left: 81%;
+    margin-left: 10%;
+    width: 80% !important;
+    text-align: center;
 }
+
+
 .shadow {
 margin-bottom: 5vh;
+}
+
+#container_results_select {
+    width: 100%;
+}
+
+.results_select {
+    height: 2vh;
+    margin-bottom: 1vh;
+    font-size: 7px;
 }
 
 }

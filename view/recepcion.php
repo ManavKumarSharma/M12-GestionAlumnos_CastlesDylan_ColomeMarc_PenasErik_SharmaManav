@@ -36,7 +36,7 @@ $total_pages = ceil($total_records / $limit_number);
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
-<body>
+<body id="bugSwal">
     <!-- Header de las paginas -->
     <header id="header">
         <img id="logo-iz" src="../img/logoClase.png" alt="">

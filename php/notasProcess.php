@@ -1,6 +1,8 @@
 <?php
     session_start();
 
+session_start();
+
     // Verificamos si existe la variable de SESSION
     if (!isset($_SESSION['session_user'])) {
         header('Location: ../view/index.php');

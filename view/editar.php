@@ -1,78 +1,129 @@
 <?php
+// Importamos los archivos necesarios
+require_once '../php/functions.php';
+require_once '../php/query.php';
+require '../php/connection/connection.php';
 
-    // Importamos los archivos necesarios
-    require_once '../php/functions.php';
-    require_once '../php/query.php';
-
-    require '../php/connection/connection.php';
-
-    if(!isset($_GET["idAlumno"])){
-        header("Location: ./recepcion.php");
-        exit();
-    }
+// Verificamos si el idAlumno está presente
+if(!isset($_GET["idAlumno"])){
+    header("Location: ./recepcion.php");
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Alumno</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/estilos.css">
     <script src="../js/validateInputs.js"></script>
-    <title>Document</title>
 </head>
-<body>
-    <form action="../php/editarProcess.php" id="formulario" method="post">
-        <?php
-        $idAlumno = htmlspecialchars($_GET["idAlumno"]);
-        $data = getDataFromUser($mysqli, $idAlumno);
-        if(mysqli_num_rows($data) > 0){
-            $row = mysqli_fetch_assoc($data);
-            
-            echo "<input type='hidden' name='matricula' value='" . $row["matricula_alumno"] . "'>";
-            
-            echo "<h4>Nombre</h4>
-            <input type='text' id='nombreAlumno' name='name_al' value='" . $row["nombre_alumno"] ."'><br><br>
-            <p id='nombreAlumnoError' style='color: red;'></p>
-            ";
 
-            echo "<h4>Apellidos</h4>
-            <input type='text' id='apellidosAlumno' name='ap_al' value='" . $row["apellido_alumno"] . "'><br><br>
-            <p id='apellidosAlumnoError' style='color: red;'></p>
-            ";
+<body class="bg-light">
+    <!-- Header con logo y usuario -->
+    <header id="header">
+        <img id="logo-iz" src="../img/logoClase.png" alt="">
+        <a href="./recepcion.php" id="logo-cent">
+            <img id="logo-cent" src="../img/logo_fje.svg" alt="">
+        </a>
+        <div id="btns-der">
+            <?php
+            session_start();
+            $rutaFotoPerfil = '../fotosPerfil/' . $_SESSION['session_user']['id'] . '.png';
+            ?>
+            <div id="img-userContainer">
+                <img src="<?php echo file_exists($rutaFotoPerfil) ? $rutaFotoPerfil : '../img/profilePic.png' ?>" alt="" id="img-user">
+            </div>
+            <p id="usrName"><?php echo $_SESSION['session_user']['name'] . ' ' .  $_SESSION['session_user']['surname'] ?></p>
+            <a id="btn-cerrarSesion"><img src="../img/off.png" alt="" id="img-cerrarSesion"></a>
+        </div>
+    </header>
 
-            echo "<h4>NIF/NIE</h4>
-            <input type='text' id='nifNieAlumno' name='nif_al' value='" . $row["dni_alumno"] . "'><br><br>
-            <p id='nifNieAlumnoError' style='color: red;'></p>
-            ";
+    <!-- Contenedor del formulario -->
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h3 class="card-title text-center mb-4">Editar Alumno</h3>
+                        <form action="../php/editarProcess.php" method="post" id="formulario">
+                            <?php
+                            $idAlumno = htmlspecialchars($_GET["idAlumno"]);
+                            $data = getDataFromUser($mysqli, $idAlumno);
+                            if (mysqli_num_rows($data) > 0) {
+                                $row = mysqli_fetch_assoc($data);
+                                echo "<input type='hidden' name='matricula' value='" . $row["matricula_alumno"] . "'>";
 
-            echo "<h4>Nacimiento</h4>
-            <input type='date' id='nacimientoAlumno' name='fecha_al' id='' value='" . $row["fecha_nac_alumno"] . "'><br><br>
-            <p id='nacimientoAlumnoError' style='color: red;'></p>
-            ";
+                                // Formulario en dos columnas
+                                echo "<div class='row'>";
 
-            echo "<h4>Dirección</h4>
-            <input type='text' id='direccionAlumno' name='dir_al' value='" . $row["direccion_alumno"] . "'><br><br>
-            <p id='direccionAlumnoError' style='color: red;'></p>
-            ";
+                                // Columna izquierda
+                                echo "<div class='col-md-6 mb-3'>
+                                    <label for='nombreAlumno' class='form-label'>Nombre</label>
+                                    <input type='text' id='nombreAlumno' name='name_al' class='form-control' value='" . $row["nombre_alumno"] ."'>
+                                    <p id='nombreAlumnoError' class='text-danger'></p>
+                                </div>";
 
-            echo "<h4>Teléfono</h4>
-            <input type='text' id='telefonoAlumno' name='tel_al' value='" . $row["telf_alumno"] . "'><br><br>
-            <p id='telefonoAlumnoError' style='color: red;'></p>
-            ";
-            
-            echo "<h4>Email Escolar</h4>
-            <input type='text' id='emailEscuelaAlumno' name='em-esc_al' value='" . $row["email_cole_alumno"] . "'><br><br>
-            <p id='emailEscuelaAlumnoError' style='color: red;'></p>
-            ";
+                                echo "<div class='col-md-6 mb-3'>
+                                    <label for='apellidosAlumno' class='form-label'>Apellidos</label>
+                                    <input type='text' id='apellidosAlumno' name='ap_al' class='form-control' value='" . $row["apellido_alumno"] . "'>
+                                    <p id='apellidosAlumnoError' class='text-danger'></p>
+                                </div>";
 
-            echo "<h4>Email Personal</h4>
-            <input type='text' id='emailPersonalAlumno' name='em-per_al' value='" . $row["email_pri_alumno"] . "'><br><br>
-            <p id='emailPersonalAlumnoError' style='color: red;'></p>
-            ";
+                                echo "<div class='col-md-6 mb-3'>
+                                    <label for='nifNieAlumno' class='form-label'>NIF/NIE</label>
+                                    <input type='text' id='nifNieAlumno' name='nif_al' class='form-control' value='" . $row["dni_alumno"] . "'>
+                                    <p id='nifNieAlumnoError' class='text-danger'></p>
+                                </div>";
 
-            echo "<input type='submit' id='botonSubmit' value='Modificar' name='envioEdit'>";
-        }
-        ?>
-    </form>
-    
+                                echo "<div class='col-md-6 mb-3'>
+                                    <label for='nacimientoAlumno' class='form-label'>Fecha de Nacimiento</label>
+                                    <input type='date' id='nacimientoAlumno' name='fecha_al' class='form-control' value='" . $row["fecha_nac_alumno"] . "'>
+                                    <p id='nacimientoAlumnoError' class='text-danger'></p>
+                                </div>";
+
+                                echo "<div class='col-md-6 mb-3'>
+                                    <label for='direccionAlumno' class='form-label'>Dirección</label>
+                                    <input type='text' id='direccionAlumno' name='dir_al' class='form-control' value='" . $row["direccion_alumno"] . "'>
+                                    <p id='direccionAlumnoError' class='text-danger'></p>
+                                </div>";
+
+                                echo "<div class='col-md-6 mb-3'>
+                                    <label for='telefonoAlumno' class='form-label'>Teléfono</label>
+                                    <input type='text' id='telefonoAlumno' name='tel_al' class='form-control' value='" . $row["telf_alumno"] . "'>
+                                    <p id='telefonoAlumnoError' class='text-danger'></p>
+                                </div>";
+
+                                echo "<div class='col-md-6 mb-3'>
+                                    <label for='emailEscuelaAlumno' class='form-label'>Email Escolar</label>
+                                    <input type='email' id='emailEscuelaAlumno' name='em-esc_al' class='form-control' value='" . $row["email_cole_alumno"] . "'>
+                                    <p id='emailEscuelaAlumnoError' class='text-danger'></p>
+                                </div>";
+
+                                echo "<div class='col-md-6 mb-3'>
+                                    <label for='emailPersonalAlumno' class='form-label'>Email Personal</label>
+                                    <input type='email' id='emailPersonalAlumno' name='em-per_al' class='form-control' value='" . $row["email_pri_alumno"] . "'>
+                                    <p id='emailPersonalAlumnoError' class='text-danger'></p>
+                                </div>";
+
+                                // Cierre de la fila
+                                echo "</div>";
+
+                                // Botón de Enviar
+                                echo "<div class='mb-3 text-center'>
+                                    <button type='submit' class='btn btn-primary w-100' name='envioEdit'>Modificar</button>
+                                </div>";
+                            }
+                            ?>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>

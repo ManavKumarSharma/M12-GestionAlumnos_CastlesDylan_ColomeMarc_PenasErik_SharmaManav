@@ -54,6 +54,7 @@
             transform: translateX(-50%);
         }
 
+
         #btns-der {
             width: 30%;
             height: 100%;
@@ -219,6 +220,10 @@
             border: 1px solid black;
             padding: 5px;
         }
+
+#bugSwal {
+    height:100% !important
+}
 
         .btn-editar {
             width: 100%;

@@ -1,8 +1,9 @@
 <?php
-function getUsersFromBBDD($mysqli, $limit_number, $offset) {
+function getUsersFromBBDD($mysqli, $limit_number, $offset, $conditions, $params, $param_types) {
+    // Definir el límite y offset para los resultados paginados
     $limit = $limit_number == false ? '' : "LIMIT $limit_number OFFSET $offset";
 
-    // Creamos la consulta dinámica con LIMIT y OFFSET
+    // Consulta para obtener los registros con los filtros, LIMIT y OFFSET
     $dinamicSql = "SELECT
                         a.matricula_alumno,
                         a.nombre_alumno,
@@ -16,25 +17,40 @@ function getUsersFromBBDD($mysqli, $limit_number, $offset) {
                         a.sexo_user
                     FROM 
                         tbl_alumnos a
-                    $limit;";
+                    $conditions $limit;";
 
-    // Inicializamos el stmt
+    // Consulta para obtener el total de registros sin LIMIT y OFFSET
+    $countSql = "SELECT COUNT(*) AS total FROM tbl_alumnos a $conditions;";
+
+    // Inicializamos el stmt para obtener los registros
     $dinamicStmt = mysqli_stmt_init($mysqli);
-
-     // Preparamos la consulta
-     if (mysqli_stmt_prepare($dinamicStmt, $dinamicSql)) {
-
-        // Ejecutamos el stmt
+    if (mysqli_stmt_prepare($dinamicStmt, $dinamicSql)) {
+        if (!empty($params)) {
+            mysqli_stmt_bind_param($dinamicStmt, $param_types, ...$params);
+        }
         mysqli_stmt_execute($dinamicStmt);
-
-        // Obtenemos los resultados
         $result = mysqli_stmt_get_result($dinamicStmt);
-
-        // Cerramos el stmt
-        mysqli_stmt_close($dinamicStmt);
-
-        return $result;
+    } else {
+        die("Error preparing statement: " . mysqli_error($mysqli));
     }
+
+    // Inicializamos el stmt para contar el total de registros
+    $countStmt = mysqli_stmt_init($mysqli);
+    $totalRecords = 0;
+    if (mysqli_stmt_prepare($countStmt, $countSql)) {
+        if (!empty($params)) {
+            mysqli_stmt_bind_param($countStmt, $param_types, ...$params);
+        }
+        mysqli_stmt_execute($countStmt);
+        $countResult = mysqli_stmt_get_result($countStmt);
+        if ($countRow = mysqli_fetch_assoc($countResult)) {
+            $totalRecords = $countRow['total'];
+        }
+    } else {
+        die("Error preparing count statement: " . mysqli_error($mysqli));
+    }
+
+    return ['data' => $result, 'total' => $totalRecords];
 }
 
 function getDataFromUser($mysqli, $matriculaAlu) {
@@ -61,13 +77,5 @@ function getDataFromUser($mysqli, $matriculaAlu) {
 
         return $result;
     }
-}
-
-function getTotalUsersCount($mysqli) {
-    // Consulta para contar el número total de registros
-    $dinamicSql = "SELECT COUNT(*) AS total FROM tbl_alumnos";
-    $result = mysqli_query($mysqli, $dinamicSql);
-    $row = mysqli_fetch_assoc($result);
-    return $row['total']; // Devuelve el número total de registros
 }
 ?>

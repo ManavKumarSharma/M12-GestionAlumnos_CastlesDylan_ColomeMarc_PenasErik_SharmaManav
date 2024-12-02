@@ -216,12 +216,6 @@ body {
     font-size: 1vw
 }
 
-#cambiarNumMostrar {
-    margin-left: 87.4%;
-    margin-top: 2vh;
-    margin-bottom: 2vh;
-}
-
 .pagination {
     margin-top: 2vh;
     width: 90%;
@@ -240,12 +234,13 @@ body {
     color: #c5e9ff;
 }
 
-#results {
+.results {
     border: none;
     background-color: #3975bb;
     color: #FFFFFF;
     font-size: 1vw;
     border-radius: 4px;
+    margin: 1px;
 }
 
 table {
@@ -277,6 +272,50 @@ table {
 #iconoEliminar {
     width: 2vh;
     height: auto;
+}
+
+#container_filter_elements {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content:end;
+    margin: 1vw;
+}
+
+/* Estilos para la ventana modal */
+.modal {
+    display: none;
+    position: fixed; 
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%; /* Ancho completo */
+    height: 100%; /* Alto completo */
+    background-color: rgba(0, 0, 0, 0.4); /* Fondo translúcido */
+}
+
+/* Estilo del contenido de la modal */
+.modal-contenido {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 15%; /* Puedes ajustar el tamaño de la modal */
+}
+
+/* El botón de cerrar */
+.cerrar {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.cerrar:hover,
+.cerrar:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 
@@ -314,11 +353,8 @@ table {
     #content-right {
         width: 100%;
     }
-    #results {
+    .results {
         height: 80%;
         font-size: 2vw;
-    }
-    #cambiarNumMostrar {
-        margin-left: 81%;
     }
 }

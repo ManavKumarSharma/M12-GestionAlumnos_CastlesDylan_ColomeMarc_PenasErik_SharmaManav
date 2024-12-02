@@ -10,4 +10,26 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // Obtener los elementos
+    var modal = document.getElementById("miModal");
+    var btn = document.getElementById("abrirModalBtn");
+    var span = document.getElementById("cerrarModalBtn");
+
+    // Cuando el usuario hace clic en el botón, abre la modal
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    // Cuando el usuario hace clic en la "X", cierra la modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // Cuando el usuario hace clic fuera de la modal, también la cierra
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
 });

@@ -1,5 +1,4 @@
 <?php
-    session_start();
 
 session_start();
 
@@ -15,6 +14,20 @@ session_start();
 
     require '../php/connection/connection.php';
 
+    $matricula = $_POST['matricula'];
+
+    if (filter_has_var(INPUT_POST, 'btn_addCourseStudent')) {
+        $course = htmlspecialchars(mysqli_real_escape_string($mysqli, $_POST['curso_al'])) ?? '';
+
+        if ($course == '') {
+            header("Location: ../view/notas.php?idAlumno=$matricula&error=NoSelectedOption");
+        }
+
+        header("Location: ./addCourseUser.php?idAlumno=$matricula&idCourse=$course");
+
+        exit();
+    }
+    
     // Provisional para hacer pruebas
     if(!isset($_POST["matricula"])){
         header("Location: ./recepcion.php");
@@ -32,7 +45,7 @@ session_start();
         exit();
     }    
     
-    $matricula = $_POST['matricula'];
+
     $notas = $_POST['notas'];
 
     try {

@@ -6,7 +6,7 @@ require_once '../php/query.php';
 
 require '../php/connection/connection.php';
 
-$data = getAvgMarkUsersFromBBDD($mysqli);
+$data = getBestMarksFromUsersBBDD($mysqli);
 ?>
 
 <!DOCTYPE html>
@@ -25,8 +25,7 @@ $data = getAvgMarkUsersFromBBDD($mysqli);
 </head>
 
 <body class="bg-light">
-<header id="header">
-
+    <header id="header">
         <img id="logo-iz" src="../img/logoClase.png" alt="">
         <a href="./recepcion.php" id="logo-cent">
         <img id="logo-cent" src="../img/logo_fje.svg" alt="">
@@ -44,7 +43,7 @@ $data = getAvgMarkUsersFromBBDD($mysqli);
         </div>
     </header>
     <div class="container mt-5">
-    <div class="row justify-content-center">
+        <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card shadow">
                 <div class="card-body">
@@ -55,27 +54,31 @@ $data = getAvgMarkUsersFromBBDD($mysqli);
                     
                     <?php else: ?>
                         <!-- Inicio de tabla -->
-                        <table>
-                            <tr>
-                                <th>Matrícula alumno</th>
-                                <th>Nombre</th>
-                                <th>Apellidos</th>
-                                <th>Asignatura</th>
-                                <th>Nota media</th>
-                                <th>Curso</th>
-                            </tr>
-                        <?php while ($row = mysqli_fetch_assoc($data)): ?>
+                        <table class="table table-bordered table-striped table-hover">
+                            <thead class="thead-primary">
+                                <tr>
+                                    <th>Matrícula alumno</th>
+                                    <th>Nombre</th>
+                                    <th>Apellidos</th>
+                                    <th>Asignatura</th>
+                                    <th>Nota media</th>
+                                    <th>Curso</th>
+                                </tr>
+                            </thead>
                             <tbody>
-                                <tr class="rowTable"></tr>
-                                <td><?php echo $row['matricula_alumno'] ?></td>
-                                <td><?php echo $row['nombre_alumno'] ?></td>
-                                <td><?php echo $row['apellido_alumno'] ?></td>
-                                <td><?php echo $row['nombre_asignatura'] ?></td>
-                                <td><?php echo $row['nota_media'] ?></td>
-                                <td><?php echo $row['nombre_curso'] ?></td>
-                            </tbody>                            
-                        <?php endwhile; ?>
+                                <?php while ($row = mysqli_fetch_assoc($data)): ?>
+                                    <tr class="table-light">
+                                        <td><?php echo $row['matricula_alumno'] ?></td>
+                                        <td><?php echo $row['nombre_alumno'] ?></td>
+                                        <td><?php echo $row['apellido_alumno'] ?></td>
+                                        <td><?php echo $row['nombre_asignatura'] ?></td>
+                                        <td><?php echo $row['nota_asignatura_alumno'] ?></td>
+                                        <td><?php echo $row['nombre_curso'] ?></td>
+                                    </tr>
+                                <?php endwhile; ?>
+                            </tbody>   
                         </table>
+
                     <?php endif; ?>
                 </div>
             </div>

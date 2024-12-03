@@ -92,6 +92,8 @@ $courses = getCoursesFromBBDD($mysqli);
                         }
                         ?>
 
+                        <input type="hidden" value="<?php echo htmlentities($curso['id_curso'])?>" name="id_curso">
+
                         <div class="row">
                             <?php
                             $formatoCursoEmpieza = $thisYear . "-" . $nextYear;

@@ -1,12 +1,27 @@
 <?php
 session_start();
+
+// Verificamos si existe la variable de SESSION
+if (!isset($_SESSION['session_user'])) {
+    header('Location: ./index.php');
+    exit;
+}
+
 // Importamos los archivos necesarios
 require_once '../php/functions.php';
 require_once '../php/query.php';
 
+// Importamos la conexión
 require '../php/connection/connection.php';
 
 
+$courses = getCoursesFromBBDD($mysqli);
+
+if (isset($_GET['error'])) {
+    $error = $_GET['error'];
+}
+
+mysqli_close($mysqli);
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +33,6 @@ require '../php/connection/connection.php';
     <title>Crear usuarios</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/estilos.css">
-    <script src="../js/validateInputs.js"></script>
 </head>
 
 <body class="bg-light">
@@ -106,8 +120,20 @@ require '../php/connection/connection.php';
                             <div class="col-md-6 mb-3">
                                 <label for="sexo_al" class="form-label">Sexo</label>
                                 <select name="sexo_al" id="sexo_al" class="form-select">
+                                    <option value="">Selecciona el sexo...</option>
                                     <option value="H">Hombre</option>
                                     <option value="M">Mujer</option>
+                                </select>
+                            </div>
+
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="curso_al" class="form-label">Curso</label>
+                                <select name="curso_al" id="curso_al" class="form-select">
+                                        <option value="">Selecciona el curso...</option>
+                                    <?php while ($row = mysqli_fetch_assoc($courses)):?>
+                                        <option value="<?php echo htmlspecialchars($row['id_curso']) ?>"><?php echo htmlspecialchars($row['nombre_curso']) ?></option>
+                                    <?php endwhile; ?>
                                 </select>
                             </div>
 
@@ -122,6 +148,17 @@ require '../php/connection/connection.php';
     </div>
 </div>
 </body>
+<script src="../js/validateInputs.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<?php if(isset($error) && $error == 'userExist'): ?>
+    <script>
+        Swal.fire({
+            icon: "info",
+            title: "Usuario existente",
+            text: "¡Ya existe un usuario con ese NIF o correo escolar!",
+            });
+    </script>
+<?php endif; ?>
 
 
 </html>

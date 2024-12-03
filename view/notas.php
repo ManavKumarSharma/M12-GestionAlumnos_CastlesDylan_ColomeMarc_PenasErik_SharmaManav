@@ -18,6 +18,8 @@ $thisYear = intval(date("Y"));
 $lastYear = $thisYear - 1;
 $nextYear = $thisYear + 1;
 
+$courses = getCoursesFromBBDD($mysqli);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -57,9 +59,10 @@ $nextYear = $thisYear + 1;
                     <h3 class="card-title text-center mb-4">Modificar Notas de <?php echo $rowUser["nombre_alumno"] . " " . $rowUser["apellido_alumno"]; ?></h3>
 
                     <form action="../php/notasProcess.php" method="post" id="formulario">
-                        <input type='hidden' name='matricula' value="<?php echo $rowUser["matricula_alumno"]; ?>">
+                        <input type="hidden" name="matricula" value="<?php echo $rowUser["matricula_alumno"]; ?>">
 
                         <?php
+                        // Consulta para obtener las asignaturas y los cursos
                         $sqlAsignaturas = "SELECT * FROM tbl_asignaturas 
                                            INNER JOIN tbl_cursos_asignaturas ON tbl_cursos_asignaturas.id_asignatura = tbl_asignaturas.id_asignatura
                                            INNER JOIN tbl_asignatura_alumno ON tbl_asignatura_alumno.id_asignatura = tbl_asignaturas.id_asignatura
@@ -98,7 +101,7 @@ $nextYear = $thisYear + 1;
                                     echo '
                                     <div class="col-md-6 mb-3">
                                         <label for="asignatura_' . $fila["id_asignatura"] . '" class="form-label">' . $fila["nombre_asignatura"] . '</label>
-                                        <input type="number" name="notas[' . $fila["id_asignatura"] . ']" value="' . $fila["nota_asignatura_alumno"] . '" class="form-control" id="asignatura_' . $fila["id_asignatura"] . '">
+                                        <input type="number" name="notas[' . $fila["id_asignatura"] . ']" value="' . $fila["nota_asignatura_alumno"] . '" class="form-control" id="asignatura_' . $fila["id_asignatura"] . '" min="0" max="100" required>
                                         <p id="asignatura_' . $fila["id_asignatura"] . 'Error" style="color: red;"></p>
                                     </div>';
                                     $cursoExiste = true;
@@ -112,7 +115,7 @@ $nextYear = $thisYear + 1;
                                         echo '
                                         <div class="col-md-6 mb-3">
                                             <label for="asignatura_' . $fila["id_asignatura"] . '" class="form-label">' . $fila["nombre_asignatura"] . '</label>
-                                            <input type="number" name="notas[' . $fila["id_asignatura"] . ']" value="' . $fila["nota_asignatura_alumno"] . '" class="form-control" id="asignatura_' . $fila["id_asignatura"] . '">
+                                            <input type="number" name="notas[' . $fila["id_asignatura"] . ']" value="' . $fila["nota_asignatura_alumno"] . '" class="form-control" id="asignatura_' . $fila["id_asignatura"] . '" min="0" max="100" required>
                                             <p id="asignatura_' . $fila["id_asignatura"] . 'Error" style="color: red;"></p>
                                         </div>';
                                     }                         
@@ -123,8 +126,24 @@ $nextYear = $thisYear + 1;
 
                             <?php if (!$cursoExiste): ?>
                                 <div class='col-12 text-center'>
-                                    Este alumno no pertenece a ningún curso. <br>
-                                    <a href="./recepcion.php">Volver a la tabla</a>        
+                                    <p>Este alumno no pertenece a ningún curso.</p>
+                                    <label for="curso_al" class="form-label">Agrégale un curso:</label>
+                                    <div class="col-md-6 mb-3 d-flex justify-content-center w-100">
+                                        <select name="curso_al" id="curso_al" class="form-select">
+                                                <option value="">Selecciona el curso...</option>
+                                            <?php while ($row = mysqli_fetch_assoc($courses)):?>
+                                                <option value="<?php echo htmlspecialchars($row['id_curso']) ?>"><?php echo htmlspecialchars($row['nombre_curso']) ?></option>
+                                            <?php endwhile; ?>
+                                        </select>
+                                    </div>
+                                    <?php
+                                        if (isset($_GET['error']) && $_GET['error'] == 'NoSelectedOption') {
+                                            echo '<span style="color: red;">Debés seleccionar una opción válida</span><br><br>';
+                                        }
+                                    ?>
+                                    <input type="submit" value="Agregar" class="btn btn-primary" name="btn_addCourseStudent">
+                                    <br><br>
+                                    <a href="./recepcion.php">Volver a la tabla</a>
                                 </div>
                             <?php else: ?>
                                 <div class="text-center mt-4">

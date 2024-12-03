@@ -279,4 +279,39 @@ function getAvgMarkUsersFromBBDD($mysqli) {
         return null;
     }
 }
+
+function getCoursesFromBBDD($mysqli) {
+    $sql = "SELECT * FROM tbl_cursos";
+
+    $stmt = mysqli_stmt_init($mysqli);
+
+    if(mysqli_stmt_prepare($stmt, $sql)) {
+        mysqli_stmt_execute($stmt);
+
+        $result = mysqli_stmt_get_result($stmt);
+
+        return $result;
+    } else {
+        return null;
+    }
+}
+
+function getDuplicatedUserFromBBDD($mysqli, $dni, $emailColegio){
+    $dni = htmlspecialchars(mysqli_real_escape_string($mysqli, $dni));
+    $emailColegio = htmlspecialchars(mysqli_real_escape_string($mysqli, $emailColegio));
+
+    $sql = "SELECT * FROM tbl_alumnos WHERE dni_alumno = ? OR email_cole_alumno LIKE ?";
+
+    $stmt = mysqli_stmt_init($mysqli);
+
+    if (mysqli_stmt_prepare($stmt, $sql)) {
+        mysqli_stmt_bind_param($stmt, 'ss', $dni, $emailColegio);
+
+        mysqli_stmt_execute($stmt);
+
+        $result = mysqli_stmt_get_result($stmt);
+
+        return mysqli_num_rows($result) === 0 ? true : false;
+    }
+}
 ?>

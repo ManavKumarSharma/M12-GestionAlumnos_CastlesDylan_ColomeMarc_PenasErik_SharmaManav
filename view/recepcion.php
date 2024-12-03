@@ -60,6 +60,8 @@ $offset = ($page - 1) * $limit_number;
 
 // Obtener los datos de los usuarios desde la base de datos
 $data = getUsersFromBBDD($mysqli, $limit_number, $offset, $filters, $column_to_filter, $order_column);
+
+mysqli_close($mysqli);
 ?>
 
 <!DOCTYPE html>

@@ -241,8 +241,8 @@ mysqli_close($mysqli);
 
                 
                 <!-- Tabla con los resultados -->
-                <table id="tbl-content">
-                    <thead>
+                <table id="tbl-content" class="table table-bordered table-striped table-hover">
+                    <thead class="thead-dark">
                         <tr>
                             <th class='ocultar'></th>
                             <th>Matrícula</th>
@@ -260,7 +260,7 @@ mysqli_close($mysqli);
                     <tbody>
                         <?php
                         while ($row = mysqli_fetch_assoc($data)) {
-                            echo "<tr class='rowTable'>";
+                            echo "<tr class='table-primary rowTable'>";
                             echo "<td class='ocultar'><input type='radio' name='alumno' value=" . htmlspecialchars($row['matricula_alumno']) . "></td>";
                             echo "<td>" . htmlspecialchars($row['matricula_alumno']) . "</td>";
                             echo "<td>" . htmlspecialchars($row['nombre_alumno']) . "</td>";
@@ -272,13 +272,14 @@ mysqli_close($mysqli);
                             echo "<td class='ocultar'>" . htmlspecialchars($row['email_cole_alumno']) . "</td>";
                             echo "<td class='ocultar'>" . htmlspecialchars($row['email_pri_alumno']) . "</td>";
                             echo "<td class='ocultar'>" . htmlspecialchars($row['sexo_user']) . "</td>";
-                            echo "<td class='celdaEditar' data-id='" . $row['matricula_alumno'] . "'><img id='iconoEditar' src='../img/iconoEditar.png'></td>";
-                            echo "<td class='celdaEliminar' data-id='" . $row['matricula_alumno'] . "'><img id='iconoEliminar' src='../img/eliminarIcono.png'></td>";
+                            echo "<td class='celdaEditar' data-id='" . $row['matricula_alumno'] . "'><img id='iconoEditar' src='../img/iconoEditar.png' alt='Editar'></td>";
+                            echo "<td class='celdaEliminar' data-id='" . $row['matricula_alumno'] . "'><img id='iconoEliminar' src='../img/eliminarIcono.png' alt='Eliminar'></td>";
                             echo "</tr>";
                         }
                         ?>
                     </tbody>
                 </table>
+
             <?php endif; ?>
         </div>
     </main>

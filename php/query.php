@@ -233,49 +233,90 @@ function getTotalUsersCount($mysqli, $filters) {
 
 
 // Función que obtiene las notas medias de los alumnos por asignatura y las ordena de mayor a menor
-function getAvgMarkUsersFromBBDD($mysqli) {
+function getBestMarksFromUsersBBDD($mysqli) {
     // Consulta SQL que obtiene las notas medias por asignatura de los alumnos y las ordena por la nota media en orden descendente
     $dinamicSql = "
+        WITH 
+        AvgNotesBySubject AS (
+            SELECT 
+                s.id_asignatura,
+                s.nombre_asignatura,
+                c.nombre_curso,
+                ROUND(AVG(asa.nota_asignatura_alumno), 2) AS nota_media
+            FROM 
+                tbl_asignaturas s
+            JOIN 
+                tbl_asignatura_alumno asa ON s.id_asignatura = asa.id_asignatura
+            JOIN 
+                tbl_cursos_asignaturas ca ON s.id_asignatura = ca.id_asignatura
+            JOIN 
+                tbl_cursos c ON ca.id_curso = c.id_curso
+            GROUP BY 
+                s.id_asignatura, c.id_curso
+        ),
+        HighestGradePerSubject AS (
+            SELECT 
+                asa.id_asignatura,
+                asa.matricula_alumno,
+                MAX(asa.nota_asignatura_alumno) AS mejor_nota
+            FROM 
+                tbl_asignatura_alumno asa
+            GROUP BY 
+                asa.id_asignatura, asa.matricula_alumno
+        ),
+        BestStudents AS (
+            SELECT 
+                h.id_asignatura,
+                h.matricula_alumno,
+                h.mejor_nota,
+                RANK() OVER (PARTITION BY h.id_asignatura ORDER BY h.mejor_nota DESC) AS rank_alumno
+            FROM 
+                HighestGradePerSubject h
+        )
         SELECT 
-            a.matricula_alumno,
-            a.nombre_alumno,
-            a.apellido_alumno,
-            s.nombre_asignatura,
-            c.nombre_curso,
-            AVG(asa.nota_asignatura_alumno) AS nota_media
+        a.nombre_alumno,
+        a.apellido_alumno,
+        a.matricula_alumno,
+        s.nombre_asignatura,
+        c.nombre_curso,  -- Mostrar el nombre del curso
+        sa.nota_asignatura_alumno
         FROM 
-            tbl_alumnos a
+            tbl_asignatura_alumno sa
         JOIN 
-            tbl_asignatura_alumno asa ON a.matricula_alumno = asa.matricula_alumno
+            tbl_alumnos a ON sa.matricula_alumno = a.matricula_alumno
         JOIN 
-            tbl_asignaturas s ON asa.id_asignatura = s.id_asignatura
+            tbl_asignaturas s ON sa.id_asignatura = s.id_asignatura
         JOIN 
             tbl_cursos_asignaturas ca ON s.id_asignatura = ca.id_asignatura
-        JOIN 
-            tbl_cursos c ON ca.id_curso = c.id_curso
-        GROUP BY 
-            a.matricula_alumno, s.id_asignatura, c.id_curso
+        JOIN
+            tbl_cursos c ON ca.id_curso = c.id_curso  -- Unimos la tabla de cursos para obtener el nombre del curso
+        WHERE 
+            sa.nota_asignatura_alumno = (
+                SELECT MAX(nota_asignatura_alumno)
+                FROM tbl_asignatura_alumno
+                WHERE id_asignatura = sa.id_asignatura
+            )
         ORDER BY 
-            nota_media DESC
+            sa.nota_asignatura_alumno DESC, s.nombre_asignatura;
     ";
 
-    // Inicializamos el stmt
+    // Preparamos la sentencia SQL
     $stmt = mysqli_stmt_init($mysqli);
 
-    // Preparamos la consulta
     if (mysqli_stmt_prepare($stmt, $dinamicSql)) {
         // Ejecutamos la consulta
         mysqli_stmt_execute($stmt);
 
-        // Obtenemos los resultados
+        // Obtenemos los resultados en forma de un conjunto de datos
         $result = mysqli_stmt_get_result($stmt);
 
-        // Cerramos el stmt
+        // Cerramos la declaración preparada
         mysqli_stmt_close($stmt);
 
+        // Retornamos el resultado para ser procesado en el HTML
         return $result;
     } else {
-        // Si ocurre un error, devolver null
+        // Si ocurre un error, devolvemos null y se puede manejar el error en el flujo principal
         return null;
     }
 }

@@ -27,12 +27,6 @@ session_start();
 
         exit();
     }
-    
-    // Provisional para hacer pruebas
-    if(!isset($_POST["matricula"])){
-        header("Location: ./recepcion.php");
-        exit();
-    }
 
     // Se Utiliza este en vez de POST-matricula
     // if(!isset($_GET["idAlumno"])){
@@ -40,22 +34,35 @@ session_start();
     //     exit();
     // }
 
-    if(!isset($_POST["notas"]) || !is_array($_POST['notas'])){
+    if(!isset($_POST["notas"]) || !is_array($_POST['notas']) || !isset($_POST['matricula']) || !isset($_POST['id_curso'])){
         header("Location: ../view/recepcion.php");
         exit();
     }    
     
 
     $notas = $_POST['notas'];
+    $course = $_POST['id_curso'];
 
     try {
-        $sqlNotas = "UPDATE tbl_asignatura_alumno SET nota_asignatura_alumno = ? WHERE matricula_alumno = ? AND id_asignatura = ?";
+        $sqlNotas = "UPDATE tbl_asignatura_alumno
+                    SET nota_asignatura_alumno = ? 
+                    WHERE matricula_alumno = ? 
+                    AND id_asignatura = ?
+                    AND id_asignatura IN (
+                        SELECT id_asignatura
+                        FROM tbl_cursos_asignaturas
+                        WHERE id_curso = ?
+                        AND id_asignatura = ?
+                    )";
+
+
+
         $stmt = mysqli_prepare($mysqli, $sqlNotas);
 
         // Recorrer el array de notas y actualizar cada una
         foreach ($notas as $idAsignatura => $nota) {
             $nota = mysqli_escape_string($mysqli, htmlspecialchars(trim($nota)));
-            mysqli_stmt_bind_param($stmt, 'iii', $nota, $matricula, $idAsignatura);
+            mysqli_stmt_bind_param($stmt, 'iiiii', $nota, $matricula, $idAsignatura, $course, $idAsignatura);
             mysqli_stmt_execute($stmt);
         }
         mysqli_commit($mysqli);

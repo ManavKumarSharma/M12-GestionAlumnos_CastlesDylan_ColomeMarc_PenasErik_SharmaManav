@@ -89,8 +89,11 @@ $courses = getCoursesFromBBDD($mysqli);
                         if (count($asignaturas) > 0) {
                             $curso = $asignaturas[0];  // Suponiendo que hay un curso disponible
                             echo "<h5 class='text-center mb-4'>" . $curso["nombre_curso"] . " (" . $curso["fecha_asignatura_alumno"] . ")</h5>";
+                            echo "<input type='hidden' value='" . htmlentities($curso['id_curso']) . "' name='id_curso'>";
                         }
                         ?>
+
+                        
 
                         <div class="row">
                             <?php

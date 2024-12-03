@@ -232,8 +232,9 @@ function getTotalUsersCount($mysqli, $filters) {
 }
 
 
-function getAvgMarkUsersFromBBDD($mysqli) {
-    // Consulta SQL que cumple con el enunciado
+// Función que obtiene las notas medias de los alumnos por asignatura y las ordena de mayor a menor
+function getBestMarksFromUsersBBDD($mysqli) {
+    // Consulta SQL que obtiene las notas medias por asignatura de los alumnos y las ordena por la nota media en orden descendente
     $dinamicSql = "
         WITH 
         AvgNotesBySubject AS (
@@ -273,21 +274,30 @@ function getAvgMarkUsersFromBBDD($mysqli) {
                 HighestGradePerSubject h
         )
         SELECT 
-            a.matricula_alumno,
-            a.nombre_alumno,
-            a.apellido_alumno,
-            avgSub.nombre_asignatura,
-            avgSub.nota_media,
-            avgSub.nombre_curso,
-            best.mejor_nota
+        a.nombre_alumno,
+        a.apellido_alumno,
+        a.matricula_alumno,
+        s.nombre_asignatura,
+        c.nombre_curso,  -- Mostrar el nombre del curso
+        sa.nota_asignatura_alumno
         FROM 
-            AvgNotesBySubject avgSub
-        LEFT JOIN 
-            BestStudents best ON avgSub.id_asignatura = best.id_asignatura AND best.rank_alumno = 1
-        LEFT JOIN 
-            tbl_alumnos a ON best.matricula_alumno = a.matricula_alumno
+            tbl_asignatura_alumno sa
+        JOIN 
+            tbl_alumnos a ON sa.matricula_alumno = a.matricula_alumno
+        JOIN 
+            tbl_asignaturas s ON sa.id_asignatura = s.id_asignatura
+        JOIN 
+            tbl_cursos_asignaturas ca ON s.id_asignatura = ca.id_asignatura
+        JOIN
+            tbl_cursos c ON ca.id_curso = c.id_curso  -- Unimos la tabla de cursos para obtener el nombre del curso
+        WHERE 
+            sa.nota_asignatura_alumno = (
+                SELECT MAX(nota_asignatura_alumno)
+                FROM tbl_asignatura_alumno
+                WHERE id_asignatura = sa.id_asignatura
+            )
         ORDER BY 
-            avgSub.nota_media DESC;
+            sa.nota_asignatura_alumno DESC, s.nombre_asignatura;
     ";
 
     // Preparamos la sentencia SQL
@@ -311,5 +321,38 @@ function getAvgMarkUsersFromBBDD($mysqli) {
     }
 }
 
+function getCoursesFromBBDD($mysqli) {
+    $sql = "SELECT * FROM tbl_cursos";
 
+    $stmt = mysqli_stmt_init($mysqli);
+
+    if(mysqli_stmt_prepare($stmt, $sql)) {
+        mysqli_stmt_execute($stmt);
+
+        $result = mysqli_stmt_get_result($stmt);
+
+        return $result;
+    } else {
+        return null;
+    }
+}
+
+function getDuplicatedUserFromBBDD($mysqli, $dni, $emailColegio){
+    $dni = htmlspecialchars(mysqli_real_escape_string($mysqli, $dni));
+    $emailColegio = htmlspecialchars(mysqli_real_escape_string($mysqli, $emailColegio));
+
+    $sql = "SELECT * FROM tbl_alumnos WHERE dni_alumno = ? OR email_cole_alumno LIKE ?";
+
+    $stmt = mysqli_stmt_init($mysqli);
+
+    if (mysqli_stmt_prepare($stmt, $sql)) {
+        mysqli_stmt_bind_param($stmt, 'ss', $dni, $emailColegio);
+
+        mysqli_stmt_execute($stmt);
+
+        $result = mysqli_stmt_get_result($stmt);
+
+        return mysqli_num_rows($result) === 0 ? true : false;
+    }
+}
 ?>

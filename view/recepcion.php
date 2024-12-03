@@ -60,6 +60,8 @@ $offset = ($page - 1) * $limit_number;
 
 // Obtener los datos de los usuarios desde la base de datos
 $data = getUsersFromBBDD($mysqli, $limit_number, $offset, $filters, $column_to_filter, $order_column);
+
+mysqli_close($mysqli);
 ?>
 
 <!DOCTYPE html>
@@ -239,8 +241,8 @@ $data = getUsersFromBBDD($mysqli, $limit_number, $offset, $filters, $column_to_f
 
                 
                 <!-- Tabla con los resultados -->
-                <table id="tbl-content">
-                    <thead>
+                <table id="tbl-content" class="table table-bordered table-striped table-hover">
+                    <thead class="thead-dark">
                         <tr>
                             <th class='ocultar'></th>
                             <th>Matrícula</th>
@@ -258,8 +260,8 @@ $data = getUsersFromBBDD($mysqli, $limit_number, $offset, $filters, $column_to_f
                     <tbody>
                         <?php
                         while ($row = mysqli_fetch_assoc($data)) {
-                            echo "<tr class='rowTable'>";
-                            echo "<td><input type='radio' name='alumno' value=" . htmlspecialchars($row['matricula_alumno']) . "></td>";
+                            echo "<tr class='table-primary rowTable'>";
+                            echo "<td><input type='radio' name='alumno' value='" . htmlspecialchars($row['matricula_alumno']) . "'></td>";
                             echo "<td>" . htmlspecialchars($row['matricula_alumno']) . "</td>";
                             echo "<td>" . htmlspecialchars($row['nombre_alumno']) . "</td>";
                             echo "<td>" . htmlspecialchars($row['apellido_alumno']) . "</td>";
@@ -270,13 +272,14 @@ $data = getUsersFromBBDD($mysqli, $limit_number, $offset, $filters, $column_to_f
                             echo "<td class='ocultar'>" . htmlspecialchars($row['email_cole_alumno']) . "</td>";
                             echo "<td class='ocultar'>" . htmlspecialchars($row['email_pri_alumno']) . "</td>";
                             echo "<td class='ocultar'>" . htmlspecialchars($row['sexo_user']) . "</td>";
-                            echo "<td class='celdaEditar' data-id='" . $row['matricula_alumno'] . "'><img id='iconoEditar' src='../img/iconoEditar.png'></td>";
-                            echo "<td class='celdaEliminar' data-id='" . $row['matricula_alumno'] . "'><img id='iconoEliminar' src='../img/eliminarIcono.png'></td>";
+                            echo "<td class='celdaEditar' data-id='" . $row['matricula_alumno'] . "'><img id='iconoEditar' src='../img/iconoEditar.png' alt='Editar'></td>";
+                            echo "<td class='celdaEliminar' data-id='" . $row['matricula_alumno'] . "'><img id='iconoEliminar' src='../img/eliminarIcono.png' alt='Eliminar'></td>";
                             echo "</tr>";
                         }
                         ?>
                     </tbody>
                 </table>
+
             <?php endif; ?>
         </div>
     </main>

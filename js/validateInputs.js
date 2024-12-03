@@ -74,6 +74,13 @@ window.onload = function() {
             validarSexo(this);
         });
     }
+
+    // Validación de Curso
+    if (document.getElementById('curso_al')) {
+        document.getElementById('curso_al').addEventListener('blur', function() {
+            validarCurso(this);
+        });
+    }
 };
 
 // ------------------------------------------------------------------------------------------------------------------
@@ -88,7 +95,7 @@ function validarFormulario() {
            validarTelefono(document.getElementById('telefonoAlumno')) &&
            validarEmail(document.getElementById('emailEscuelaAlumno')) &&
            validarEmail(document.getElementById('emailPersonalAlumno')) &&
-           validarSexo(document.getElementById('sexo_al'));
+           validarSexo(document.getElementById('sexo_al')) && validarCurso(document.getElementById('curso_al'));
 }
 
 // ------------------------------------------------------------------------------------------------------------------
@@ -324,10 +331,16 @@ function validarEmail(input) {
 
 function validarSexo(input) {
     const sexoEntrada = input.value;
-
-    if (sexoEntrada.trim() != "H" || sexoEntrada.trim() != "M") {
+    if (sexoEntrada.trim() !== "H" && sexoEntrada.trim() !== "M") {
         return false;
     }
-
     return true;
+}
+
+function validarCurso(input) {
+    const cursoEntrada = input.value.trim();
+    if (cursoEntrada === "") {
+        return false; // El campo no puede estar vacío
+    }
+    return true; // El curso es válido si tiene algún valor
 }
